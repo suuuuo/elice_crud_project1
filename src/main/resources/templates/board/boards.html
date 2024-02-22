@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="boards-container">
+    <div class="boards-title">
+        <p>게시판 목록</p>
+    </div>
+
+
+    <div class="boards-list">
+        <div>
+            <a class="button" href="/posts/new">생성</a>
+        </div>
+
+        <div class="boards-board_1">
+
+
+            <p th:text="${boards}"></p>
+        </div>
+        <div class="boards-board_2"></div>
+        <div class="boards-board_3"></div>
+        <div class="boards-board_4"></div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

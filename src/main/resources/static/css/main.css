@@ -1,0 +1,132 @@
+* {
+    margin : 0;
+    padding : 0;
+}
+
+.boards-container {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    border: none;
+    width: 1440px;
+    height: 1024px;
+    background-color: white;
+}
+
+.boards-title{
+    width: 810px;
+    height: 80px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 36px;
+    border-bottom: 1px solid black;
+}
+.boards-list{
+    background-color: #A9ACF1;
+    width: 810px;
+    height: 710px;
+    border-radius: 20px;
+    margin: 30px auto 0 auto;
+}
+
+.button {
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    float: right;
+    color: white;
+    text-decoration: none;
+    background-color: #947FE1;
+    width: 60px;
+    height: 30px;
+    margin: 20px 30px 0 0;
+
+
+}
+.boards-board_1{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 100px 0 0 100px;
+    cursor: pointer;
+}
+.boards-board_2{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: -220px 0 0 500px;
+    cursor: pointer;
+}
+.boards-board_3{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 80px 0 0 100px;
+    cursor: pointer;
+}
+.boards-board_4{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: -220px 0 0 500px;
+    cursor: pointer;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin: 12px 0 012px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 8px;
+    width: 80%;
+    min-height: 32px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: black;
+    margin-bottom: 24px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+    0px 0px 1px 1px rgb(84, 105, 212),
+    0px 2px 5px 0px rgba(60, 66, 87, 0.08);
+}
+
+.form-group textarea {
+    resize: none;
+    white-space: pre;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 8px;
+    width: 80%;
+    min-height: 64px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: black;
+    margin-bottom: 24px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+    0px 0px 1px 1px rgb(84, 105, 212),
+    0px 2px 5px 0px rgba(60, 66, 87, 0.08);
+
+}
+
