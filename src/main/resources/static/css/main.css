@@ -21,7 +21,7 @@
     text-align: center;
     padding-top: 50px;
     font-size: 36px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 }
 .boards-list{
     background-color: #A9ACF1;
@@ -83,50 +83,75 @@
     cursor: pointer;
 }
 
-.form-group {
+.createBoard-name{
+    width: 550px;
+    height: 70px;
+    margin: 80px auto 0 auto;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+.createBoard-name-input{
+    width:  530px;
+    height: 50px;
+    font-size: 20px;
+    margin: 8px 10px;
+    border: none;
+    outline: none;
+}
+
+.createBoard-intro-input{
+    width: 530px;
+    height: 160px;
+    margin: 7px 0 0 7px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+.createBoard-intro{
+    width: 550px;
+    height: 180px;
+    border-radius: 10px;
+    margin: 30px auto 0 auto;
+    border: 1px solid black;
+
+}
+.board-button_area {
+    margin: 50px auto 0 auto;
+    width: 550px;
+    height: 75px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    margin: 12px 0 012px;
 }
-
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
+.createBoard-button_area{
+    width: 140px;
+    height: 55px;
+    background-color: #A9ACF1;
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 7px;
+    margin-left:70px;
 }
-
-.form-group input {
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 8px;
-    width: 80%;
-    min-height: 32px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: black;
-    margin-bottom: 24px;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-    0px 0px 1px 1px rgb(84, 105, 212),
-    0px 2px 5px 0px rgba(60, 66, 87, 0.08);
+.createBoard-button{
+    font-size: 24px;
+    width: 150px;
+    height: 20px;
+    color: black;
+    text-decoration-line: none;
 }
-
-.form-group textarea {
-    resize: none;
-    white-space: pre;
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 8px;
-    width: 80%;
-    min-height: 64px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: black;
-    margin-bottom: 24px;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-    0px 0px 1px 1px rgb(84, 105, 212),
-    0px 2px 5px 0px rgba(60, 66, 87, 0.08);
-
+.back-button_area{
+    width: 140px;
+    height: 55px;
+    background-color: #A9ACF1;
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 7px;
+    margin-left: 50px;
+}
+.back-button{
+    font-size: 24px;
+    width: 150px;
+    height: 20px;
+    color: black;
+    text-decoration-line: none;
 }
 

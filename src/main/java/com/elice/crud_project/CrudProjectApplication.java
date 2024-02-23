@@ -9,7 +9,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration; 
 //@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class}) //DB 추가하고 나면 삭제하기
 public class CrudProjectApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(CrudProjectApplication.class, args);
 	}
 
