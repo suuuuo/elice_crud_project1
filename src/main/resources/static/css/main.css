@@ -154,4 +154,73 @@
     color: black;
     text-decoration-line: none;
 }
-
+.access-area{
+    width: 560px;
+    height: 260px;
+    border-radius: 27px;
+    margin: 100px auto 0 auto;
+    background-color: #A9ACF1;
+}
+.id_area{
+    margin: 40px 0 0 80px;
+    width: 395px;
+    height: 45px;
+    border-radius: 5px;
+    background-color: white;
+}
+.login_input{
+    font-size: 16px;
+    width: 380px;
+    height: 35px;
+    margin-top: 3px;
+    margin-left: 5px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.Login_link{
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+    color: black;
+}
+.pw_area{
+    width: 395px;
+    height: 45px;
+    border-radius: 5px;
+    margin-left: 80px;
+    margin-top: 20px;
+    background-color: white;
+}
+.pw_input{
+    font-size: 16px;
+    width: 380px;
+    height: 35px;
+    margin-top: 3px;
+    margin-left: 5px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.Login-button{
+    margin: 30px auto 0 auto;
+    width: 165px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 3px;
+    padding-left: 100px;
+    padding-top: 10px;
+    cursor: pointer;
+    background-color: white;
+}
+.access-join_button{
+    width: 80px;
+    height: 30px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+    margin: 10px auto 0 auto;
+}
+.joint-button{
+    cursor: pointer;
+}

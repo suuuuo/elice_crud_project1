@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>로그인</title>
     <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/main.css" />
 </head>
 
 <body>
@@ -11,6 +12,21 @@
 <div class="boards-title">
     <p>게시판</p>
 </div>
+    <div class="access-area">
+        <div class="id_area">
+            <input type="text" class="login_input">
+        </div>
+        <div class="pw_area">
+            <input type="text" class="pw_input">
+        </div>
+        <div class="Login-button">
+            <a  class="Login_link" href="/boards"><p>로그인</p></a>
+        </div>
+
+    </div>
+    <div class="access-join_button">
+        <a class="joint-button" ><p>회원가입</p></a>
+    </div>
 </div>
 </body>
 
