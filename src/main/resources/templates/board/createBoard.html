@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 생성</title>
+    <!--<link th:href="@{/css/main.css}" rel="stylesheet">-->
+    <link rel="stylesheet" href="../../static/css/main.css" />
+</head>
+<body>
+<div class="boards-container">
+    <div class="boards-title">
+        <p>게시판 생성</p>
+    </div>
+
+    <div class="createBoard-name">
+        <input class="createBoard-name-input"  type="text">
+    </div>
+
+    <div class="createBoard-intro">
+        <input class="createBoard-intro-input" type="text">
+    </div>
+    <div class="board-button_area">
+        <div class="createBoard-button_area">
+            <!-- 생성하기 버튼 누르면 save 실행되어야-->
+            <a class="createBoard-button" href="/boards">생성하기</a>
+        </div>
+        <div class="back-button_area">
+            <a class="back-button" href="/boards">돌아가기</a>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
