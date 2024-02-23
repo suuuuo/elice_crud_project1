@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,43 +32,42 @@ public class BoardController {
         return "board/createBoard";
     }
 
-    @GetMapping("/boards/edit/{Board_id}") // 게시판 수정
-    public String editboard(@PathVariable int Board_id, Model model) {
-        model.addAttribute("board", boardService.getBoardById(Board_id));
+    @GetMapping("/boards/edit/{board_id}") // 게시판 수정
+    public String editboard(@PathVariable int boardId, Model model) {
+        model.addAttribute("board", boardService.getBoardById(boardId));
         return "/board/editBoard";
     }
 
-
     @GetMapping("/boards/{Board_id}") // 게시판 메인화면
-    public String getboard(@PathVariable int Board_id, Model model) {
-        model.addAttribute("board", boardService.getBoardById(Board_id));
+    public String getboard(@PathVariable int board_id, Model model) {
+        model.addAttribute("board", boardService.getBoardById(board_id));
         return "/board/board";
     }
 
-    @PostMapping("/boards/new")
+    @PostMapping("/boards/new") //새 게시판 생성
     public String createBoard(@ModelAttribute BoardForm form) {
         Board board = new Board();
 
-        board.setBoard_name(form.getBoard_name());
-        board.setBoard_intro(form.getBoard_intro());
+        board.setBoardName(form.getBoardName());
+        board.setBoardIntro(form.getBoardIntro());
 
-        int Board_id = boardService.saveBoard(board);
-        return "redirect:/boards" + Board_id;
+        int boardId = boardService.saveBoard(board);
+        return "redirect:/boards" + boardId; //새로 생긴 게시판으로 이동?
     }
 
-    @PutMapping("/boards/edit/{Board_id}")
-    public String updateBoard(@PathVariable int Board_id, @ModelAttribute BoardForm form) {
-        Board board = boardService.getBoardById(Board_id);
-        board.setBoard_name(form.getBoard_name());
-        board.setBoard_intro(form.getBoard_intro());
+    @PutMapping("/boards/edit/{board_id}") //게시판 수정 요청
+    public String updateBoard(@PathVariable int boardId, @ModelAttribute BoardForm form) {
+        Board board = boardService.getBoardById(boardId);
+        board.setBoardName(form.getBoardName());
+        board.setBoardIntro(form.getBoardIntro());
         boardService.updateBoard(board);
 
-        return "redirect:/boards/" + Board_id;
+        return "redirect:/boards/" + boardId; //수정된 게시판으로 이동?
     }
 
-    @DeleteMapping("/boards/{Board_id}")
-    public String deleteBoard(@PathVariable int Board_id) {
-        boardService.deleteBoardById(Board_id);
+    @DeleteMapping("/boards/{board_id}") //게시판 삭제
+    public String deleteBoard(@PathVariable int boardId) {
+        boardService.deleteBoardById(boardId);
         return "redirect:/boards";
     }
 }

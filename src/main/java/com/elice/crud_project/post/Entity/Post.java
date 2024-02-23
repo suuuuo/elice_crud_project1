@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int post_id;
+    private int postId;
 
     @ManyToOne
     @JoinColumn(name = "Board_id")

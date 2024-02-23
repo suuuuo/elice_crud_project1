@@ -11,23 +11,21 @@ import java.util.Optional;
 
 @Repository
 public class JdbcTemplateBoardRepository {
-
     private final JdbcTemplate jdbcTemplate;
-
     public JdbcTemplateBoardRepository(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Board save(Board board){
-        String sql = "insert into board (User_id, Board_name, Board_intro) values (?, ?, ?)";
-        int Board_id = jdbcTemplate.update(sql, board.getUser().getUserId(), board.getBoard_name(), board.getBoard_intro());
-        board.setBoard_id((int)Board_id);
+        String sql = "insert into board (user_id, board_name, board_intro) values (?, ?, ?)";
+        int Board_id = jdbcTemplate.update(sql, board.getUser().getUserId(), board.getBoardName(), board.getBoardIntro());
+        board.setBoardId((int)Board_id);
         return board;
     }
 
     public int update(Board board){
-        String sql = "update board set Board_name = ? , Board_intro = ?  where Board_id = ?";
-        int result = jdbcTemplate.update(sql, board.getBoard_name(), board.getBoard_intro(), board.getBoard_id());
+        String sql = "update board set board_name = ? , board_intro = ?  where board_id = ?";
+        int result = jdbcTemplate.update(sql, board.getBoardName(), board.getBoardIntro(), board.getBoardId());
         return result;
     }
 
@@ -36,24 +34,23 @@ public class JdbcTemplateBoardRepository {
         return jdbcTemplate.query(sql, boardRowMapper());
     }
 
-    public Optional<Board> findById(int Board_id) {
-        String sql = "select * from board where Board_id = ?";
-        return jdbcTemplate.query(sql, boardRowMapper(), Board_id).stream().findAny();
+    public Optional<Board> findById(int boardId) {
+        String sql = "select * from board where board_id = ?";
+        return jdbcTemplate.query(sql, boardRowMapper(), boardId).stream().findAny();
     }
 
     public void deleteById(int Board_id){
-        String sql = "DELETE FROM Board WHERE Board_id = ?";
+        String sql = "DELETE FROM Board WHERE board_id = ?";
         jdbcTemplate.update(sql, Board_id);
     }
 
     private RowMapper<Board> boardRowMapper(){
         return (rs, rowNum) -> {
             Board board = new Board();
-            board.setBoard_id(rs.getInt("Board_id"));
-            board.setBoard_name(rs.getString("Board_name"));
-            board.setBoard_intro(rs.getString("Board_intro"));
+            board.setBoardId(rs.getInt("Board_id"));
+            board.setBoardName(rs.getString("Board_name"));
+            board.setBoardIntro(rs.getString("Board_intro"));
             return board;
         };
     }
-
 }
