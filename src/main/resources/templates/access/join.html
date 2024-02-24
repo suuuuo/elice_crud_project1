@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html,
+        body {
+            font-family: "Elice DX Neolli", sans-serif;
+        }
+    </style>
+    <title>회원가입</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/main.css" />
+</head>
+
+<body>
+<div class="boards-container">
+    <div class="boards-title">
+        <p>회원가입</p>
+    </div>
+
+    <div class="join-area">
+        <div class="joinId_area">
+            <input type="text" class="joinId_input" placeholder="아이디를 입력해주세요">
+        </div>
+        <div class="joinPw_area">
+            <input type="text" class="joinPw_input" placeholder="비밀번호를 입력해주세요">
+        </div>
+        <div class="joinPw_area">
+            <input type="text" class="joinPwAgain_input" placeholder="비밀번호를 다시 입력해주세요" >
+        </div>
+        <div class="join-buttonArea">
+            <a  class="join-button" href="/boards"><p>가입하기</p></a>
+        </div>
+        </div>
+</div>
+</body>
+</html>

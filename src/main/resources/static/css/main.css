@@ -1,0 +1,295 @@
+* {
+    margin : 0;
+    padding : 0;
+}
+
+.boards-container {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    border: none;
+    width: 1440px;
+    height: 1024px;
+    background-color: white;
+}
+
+.boards-title{
+    width: 810px;
+    height: 130px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 36px;
+    border-bottom: 2px solid black;
+}
+.boards-list{
+    background-color: #A9ACF1;
+    width: 810px;
+    height: 710px;
+    border-radius: 20px;
+    margin: 30px auto 0 auto;
+}
+
+.button {
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    float: right;
+    color: white;
+    text-decoration: none;
+    background-color: #947FE1;
+    width: 60px;
+    height: 30px;
+    margin: 20px 30px 0 0;
+
+
+}
+.boards-board_1{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 100px 0 0 100px;
+    cursor: pointer;
+}
+.boards-board_2{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: -220px 0 0 500px;
+    cursor: pointer;
+}
+.boards-board_3{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 80px 0 0 100px;
+    cursor: pointer;
+}
+.boards-board_4{
+    width: 220px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    margin: -220px 0 0 500px;
+    cursor: pointer;
+}
+
+.createBoard-name{
+    width: 550px;
+    height: 70px;
+    margin: 80px auto 0 auto;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+.createBoard-name-input{
+    width:  530px;
+    height: 50px;
+    font-size: 20px;
+    margin: 8px 10px;
+    border: none;
+    outline: none;
+}
+
+.createBoard-intro-input{
+    width: 530px;
+    height: 160px;
+    margin: 7px 0 0 7px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+.createBoard-intro{
+    width: 550px;
+    height: 180px;
+    border-radius: 10px;
+    margin: 30px auto 0 auto;
+    border: 1px solid black;
+
+}
+.board-button_area {
+    margin: 50px auto 0 auto;
+    width: 550px;
+    height: 75px;
+    display: flex;
+}
+.createBoard-button_area{
+    width: 140px;
+    height: 55px;
+    background-color: #A9ACF1;
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 7px;
+    margin-left:70px;
+}
+.createBoard-button{
+    font-size: 24px;
+    width: 150px;
+    height: 20px;
+    color: black;
+    text-decoration-line: none;
+}
+.back-button_area{
+    width: 140px;
+    height: 55px;
+    background-color: #A9ACF1;
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 7px;
+    margin-left: 50px;
+}
+.back-button{
+    font-size: 24px;
+    width: 150px;
+    height: 20px;
+    color: black;
+    text-decoration-line: none;
+}
+.access-area{
+    width: 560px;
+    height: 260px;
+    border-radius: 27px;
+    margin: 100px auto 0 auto;
+    background-color: #A9ACF1;
+}
+.id_area{
+    margin: 40px 0 0 80px;
+    width: 395px;
+    height: 45px;
+    border-radius: 5px;
+    background-color: white;
+}
+.login_input{
+    font-size: 16px;
+    width: 380px;
+    height: 35px;
+    margin-top: 3px;
+    margin-left: 5px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.Login_link{
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+    color: black;
+}
+.pw_area{
+    width: 395px;
+    height: 45px;
+    border-radius: 5px;
+    margin-left: 80px;
+    margin-top: 20px;
+    background-color: white;
+}
+.pw_input{
+    font-size: 16px;
+    width: 380px;
+    height: 35px;
+    margin-top: 3px;
+    margin-left: 5px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.Login-button{
+    margin: 30px auto 0 auto;
+    width: 165px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 3px;
+    padding-left: 100px;
+    padding-top: 10px;
+    cursor: pointer;
+    background-color: white;
+}
+.access-join_button{
+    width: 80px;
+    height: 30px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+    margin: 10px auto 0 auto;
+}
+.joint-button{
+    cursor: pointer;
+}
+.join-area{
+    width: 560px;
+    height: 450px;
+    margin: 100px auto 0 auto;
+}
+.joinId_area{
+    width: 560px;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #C1BBBB;
+}
+.joinId_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.joinPw_area{
+    margin-top: 15px;
+    width: 560px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #C1BBBB;
+}
+.joinPw_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.joinPwAgain_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.join-buttonArea {
+    width: 400px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: #947FE1;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px auto 0 auto;
+    padding-top: 35px;
+}
+.join-button{
+
+    font-size: 30px;
+    color: white;
+    text-underline: none;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
