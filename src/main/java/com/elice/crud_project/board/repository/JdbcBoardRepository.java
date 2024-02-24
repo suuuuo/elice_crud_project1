@@ -16,6 +16,7 @@ public class JdbcBoardRepository {
     }
 
     public Board save(Board board) throws SQLException {
+
         String sql = "INSERT INTO Board(user_id, board_name, board_intro) VALUES(?,?,?)";
 
         Connection conn = null;

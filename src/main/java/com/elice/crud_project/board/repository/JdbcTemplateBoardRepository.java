@@ -1,5 +1,6 @@
 package com.elice.crud_project.board.repository;
 
+import com.elice.crud_project.access.entity.User;
 import com.elice.crud_project.board.entity.Board;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Repository
 public class JdbcTemplateBoardRepository {
+
     private final JdbcTemplate jdbcTemplate;
     public JdbcTemplateBoardRepository(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -18,8 +20,8 @@ public class JdbcTemplateBoardRepository {
 
     public Board save(Board board){
         String sql = "insert into board (user_id, board_name, board_intro) values (?, ?, ?)";
-        int Board_id = jdbcTemplate.update(sql, board.getUser().getUserId(), board.getBoardName(), board.getBoardIntro());
-        board.setBoardId((int)Board_id);
+        int boardId = jdbcTemplate.update(sql, board.getUser().getUserId(), board.getBoardName(), board.getBoardIntro());
+        board.setBoardId((int)boardId);
         return board;
     }
 
@@ -39,17 +41,17 @@ public class JdbcTemplateBoardRepository {
         return jdbcTemplate.query(sql, boardRowMapper(), boardId).stream().findAny();
     }
 
-    public void deleteById(int Board_id){
+    public void deleteById(int boardId){
         String sql = "DELETE FROM Board WHERE board_id = ?";
-        jdbcTemplate.update(sql, Board_id);
+        jdbcTemplate.update(sql, boardId);
     }
 
     private RowMapper<Board> boardRowMapper(){
         return (rs, rowNum) -> {
             Board board = new Board();
-            board.setBoardId(rs.getInt("Board_id"));
-            board.setBoardName(rs.getString("Board_name"));
-            board.setBoardIntro(rs.getString("Board_intro"));
+            board.setBoardId(rs.getInt("board_id"));
+            board.setBoardName(rs.getString("board_name"));
+            board.setBoardIntro(rs.getString("board_intro"));
             return board;
         };
     }

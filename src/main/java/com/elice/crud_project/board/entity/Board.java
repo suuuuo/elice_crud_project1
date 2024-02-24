@@ -24,10 +24,10 @@ public class Board {
     @OneToMany(mappedBy = "board") // 게시판 : 게시글 = 1 : N
     private List<Post> posts = new ArrayList<>();
 
-    @Column(name = "board_name")
+    @Column(name = "board_name", length = 20)
     private String boardName;
 
-    @Column(name = "board_intro")
+    @Column(name = "board_intro", length = 50)
     private String boardIntro;
 
     public Board() {
