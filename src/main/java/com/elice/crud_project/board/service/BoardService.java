@@ -18,20 +18,20 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public Board getBoardById(int Board_id){
-        return boardRepository.findById(Board_id).orElse(null);
+    public Board getBoardById(int boardId){
+        return boardRepository.findById(boardId).orElse(null);
     }
 
     public int saveBoard(Board board){
         Board result = boardRepository.save(board);
-        return result.getBoard_id();
+        return result.getBoardId();
     }
     public void updateBoard(Board board){
         boardRepository.update(board);
     }
 
-    public void deleteBoardById(int Board_id){
-        boardRepository.deleteById(Board_id);
+    public void deleteBoardById(int boardId){
+        boardRepository.deleteById(boardId);
     }
 
 

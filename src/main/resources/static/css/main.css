@@ -16,7 +16,7 @@
 
 .boards-title{
     width: 810px;
-    height: 80px;
+    height: 130px;
     margin: 0 auto 0 auto;
     text-align: center;
     padding-top: 50px;
@@ -223,4 +223,73 @@
 }
 .joint-button{
     cursor: pointer;
+}
+.join-area{
+    width: 560px;
+    height: 450px;
+    margin: 100px auto 0 auto;
+}
+.joinId_area{
+    width: 560px;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #C1BBBB;
+}
+.joinId_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.joinPw_area{
+    margin-top: 15px;
+    width: 560px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #C1BBBB;
+}
+.joinPw_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.joinPwAgain_input{
+    font-size: 20px;
+    width: 535px;
+    height: 50px;
+    margin-top: 3px;
+    margin-left: 8px;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
+}
+.join-buttonArea {
+    width: 400px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: #947FE1;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px auto 0 auto;
+    padding-top: 35px;
+}
+.join-button{
+
+    font-size: 30px;
+    color: white;
+    text-underline: none;
+    text-decoration-line: none;
+    outline: none;
+    border: none;
 }
