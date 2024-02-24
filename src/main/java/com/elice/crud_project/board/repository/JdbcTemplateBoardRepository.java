@@ -47,9 +47,9 @@ public class JdbcTemplateBoardRepository {
     private RowMapper<Board> boardRowMapper(){
         return (rs, rowNum) -> {
             Board board = new Board();
-            board.setBoardId(rs.getInt("Board_id"));
-            board.setBoardName(rs.getString("Board_name"));
-            board.setBoardIntro(rs.getString("Board_intro"));
+            board.setBoardId(rs.getInt("board_id"));
+            board.setBoardName(rs.getString("board_name"));
+            board.setBoardIntro(rs.getString("board_intro"));
             return board;
         };
     }
