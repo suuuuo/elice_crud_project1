@@ -1,35 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>게시판 생성</title>
-    <!--<link th:href="@{/css/main.css}" rel="stylesheet">-->
-    <link rel="stylesheet" href="../../static/css/main.css" />
+    <meta charset="UTF-8" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <link
+            href="https://font.elice.io/css?family=Elice+DX+Neolli"
+            rel="stylesheet"
+    />
+
+    <style>
+        html,
+        body {
+            font-family: "Elice DX Neolli", sans-serif;
+        }
+    </style>
+    <title>게시판 추가</title>
 </head>
 <body>
-<div class="boards-container">
-    <div class="boards-title">
-        <p>게시판 생성</p>
+<div class="container my-5">
+    <div class="header mb-5">
+        <h1 class="text-center">게시판 추가</h1>
     </div>
-
-    <div class="createBoard-name">
-        <input class="createBoard-name-input"  type="text">
-    </div>
-
-    <div class="createBoard-intro">
-        <input class="createBoard-intro-input" type="text">
-    </div>
-    <div class="board-button_area">
-        <div class="createBoard-button_area">
-            <!-- 생성하기 버튼 누르면 save 실행되어야-->
-            <a class="createBoard-button" href="/boards">생성하기</a>
+    <form th:action="@{/boards/create}" method="post">
+        <div class="mb-3">
+            <label for="name">게시판 이름</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    maxlength="20"
+                    placeholder="게시판 이름 입력 (최대 20자)"
+                    required
+            />
         </div>
-        <div class="back-button_area">
-            <a class="back-button" href="/boards">돌아가기</a>
+        <div class="mb-3">
+            <label for="description">게시판 설명</label>
+            <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    maxlength="200"
+                    placeholder="게시판 설명 입력 (최대 200자)"
+            ></textarea>
         </div>
-    </div>
-
-
+        <button type="submit" class="btn btn-primary">게시판 추가</button>
+        <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="window.history.back();"
+        >
+            취소
+        </button>
+    </form>
 </div>
 
+<!-- 부트스트랩 JS 추가 -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+></script>
 </body>
+</html>
