@@ -37,7 +37,7 @@ public class CommentController {
 
     @DeleteMapping("/{comment_id}") //댓글 삭제 요청
     public String deleteComment(@PathVariable int comment_id){
-        Comment deleteComment = commentService.findComment(comment_id);
+        Comment deleteComment = commentService.findCommentByCommentId(comment_id);
         int postId = deleteComment.getPost().getPostId();
         commentService.deleteComment(comment_id);
         return "redirect:/post/" + postId; // 해당 게시글 화면으로 다시 돌아감

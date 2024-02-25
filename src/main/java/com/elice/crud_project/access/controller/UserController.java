@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) { this.userService = userService; }
 
-    @GetMapping("/access") // 로그인 화면
+    @GetMapping("/access") // 로그인 화면 - 확인
     public String loginPage(Model model){
        return "access/access";
     }
@@ -24,7 +24,7 @@ public class UserController {
         return "board/boards";
     }
 
-    @GetMapping("/join") // 회원가입 화면
+    @GetMapping("/join") // 회원가입 화면 - 확인
     public String joinPage(Model model){
         return "access/join";
     }
