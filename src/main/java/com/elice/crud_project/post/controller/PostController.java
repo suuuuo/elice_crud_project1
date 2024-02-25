@@ -2,6 +2,8 @@ package com.elice.crud_project.post.controller;
 
 
 import com.elice.crud_project.board.service.BoardService;
+import com.elice.crud_project.comment.entity.Comment;
+import com.elice.crud_project.comment.service.CommentService;
 import com.elice.crud_project.post.Entity.Post;
 import com.elice.crud_project.post.Entity.PostPostDto;
 import com.elice.crud_project.post.mapper.PostMapper;
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 public class PostController {
@@ -20,12 +24,15 @@ public class PostController {
     private final PostService postService;
     private final BoardService boardService;
     private final PostMapper postMapper;
+    private final CommentService commentService;
 
     @GetMapping("/post/{post_id}") // 게시글 눌렀을 때 화면 : 게시글 조회
     public String postMain(@PathVariable int post_id, Model model){
         Post post = postService.findPost(post_id);
         model.addAttribute("post", post);
-        //코멘트 추가해야
+        //코멘트 추가
+        List<Comment> commentList = commentService.findCommentByPostId(post_id);
+        model.addAttribute("comments",commentList);
         return "post/post";
     }
 
