@@ -11,6 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +32,8 @@ public class Board {
     @Column(name = "board_intro", length = 50)
     private String boardIntro;
 
-    public Board() {
-    }
-
     @Builder
-    public Board(int boardId, User user, String boardName, String boardIntro) {
-        this.boardId = boardId;
+    public Board(User user, String boardName, String boardIntro) {
         this.user = user;
         this.boardName = boardName;
         this.boardIntro = boardIntro;
