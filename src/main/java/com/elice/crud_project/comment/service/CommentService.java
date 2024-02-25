@@ -23,9 +23,9 @@ public class CommentService {
 
     public List<Comment> findComments() { return commentRepository.findAll(); } //댓글 전체 조회
     public List<Comment> findCommentByPostId(int postId) { // 포스트 아이디로 댓글 조회
-        return commentRepository.findByPostId(postId);
+        return commentRepository.findCommentsByPostPostId(postId);
     }
-    public Comment findComment(int commentId){ // 댓글아이디로 댓글 조회
+    public Comment findCommentByCommentId(int commentId){ // 댓글아이디로 댓글 조회
         return commentRepository.findById(commentId).orElse(null);
     }
 
@@ -36,7 +36,7 @@ public class CommentService {
     }
 
     public Comment updateComment(int commentId, Comment comment){ //댓글 수정
-        Comment updateComment = commentRepository.findById(commentId).orElse(null);
+        Comment updateComment = commentRepository.findCommentByCommentId(commentId);
         updateComment.setCommemtContent(comment.getCommemtContent());
         return commentRepository.save(updateComment);
     }
