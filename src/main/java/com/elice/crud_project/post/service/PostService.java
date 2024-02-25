@@ -24,9 +24,9 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public Page<Post> findPostsByBoardANDketword(Board board, String keyword, PageRequest pageRequest){
+    public Page<Post> findPostsByBoardANDKeyword(Board board, String keyword, PageRequest pageRequest){
         if (keyword != null && !keyword.isEmpty()){
-            return postRepository.findAllByBoardAndPostTitleContaining(board, keyword,pageRequest);
+            return postRepository.findAllByBoardAndPostTitleContaining(board, keyword, pageRequest);
         }
         else {
             return postRepository.findAllByBoardOrderByCreatedAtDesc(board, pageRequest);
