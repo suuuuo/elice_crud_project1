@@ -36,9 +36,15 @@ public class PostController {
         return "post/post";
     }
 
+    /*
     @GetMapping("/post/create") //게시글 생성창
     public String createPostPage(@RequestParam int boardId, Model model){
         model.addAttribute("boardId", boardId); // 수정?
+        return "post/createPost";
+    }*/
+
+    @GetMapping("/post/create") // 확인..
+    public String createPostPage(){
         return "post/createPost";
     }
 

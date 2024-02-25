@@ -48,6 +48,9 @@
     <div class="container border rounded p-4 position-relative">
         <div class="header mb-3">
             <h2 class="text-start" th:text="${post.title}">게시글 제목</h2>
+            <small class="text-secondary" th:text="${post.updatedAt}"
+            >게시글 수정일</small
+            >
         </div>
         <p class="m-0" th:text="${post.content}">게시글 내용</p>
         <hr class="mt-4" />
@@ -70,8 +73,13 @@
                     th:each="comment : ${comments}"
             >
                 <div class="card-body position-relative">
+                    <small class="text-secondary" th:text="${post.createdAt}"
+                    >댓글 생성일</small>
                     <p class="mb-2" th:text="${comment.content}">댓글 내용</p>
-                    <small class="text-secondary">2024-01-04T13:21:21</small>
+
+                    <small class="text-secondary" th:text="${post.createdAt}"
+                    >댓글 수정일</small
+                    >
 
                     <div
                             class="position-absolute end-0 top-50 translate-middle-y mb-3 me-3 btn-group bg-white bg-opacity-75"

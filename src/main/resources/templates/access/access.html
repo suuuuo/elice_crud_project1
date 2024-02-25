@@ -5,6 +5,12 @@
     <title>로그인</title>
     <link th:href="@{/css/main.css}" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/main.css" />
+    <style>
+        html,
+        body {
+            font-family: "Elice DX Neolli", sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,10 +20,10 @@
 </div>
     <div class="access-area">
         <div class="id_area">
-            <input type="text" class="login_input">
+            <input type="text" class="login_input" placeholder="아이디를 입력해주세요">
         </div>
         <div class="pw_area">
-            <input type="text" class="pw_input">
+            <input type="text" class="pw_input" placeholder="비밀번호를 입력해주세요">
         </div>
         <div class="Login-button">
             <a  class="Login_link" href="/boards"><p>로그인</p></a>
@@ -25,7 +31,7 @@
 
     </div>
     <div class="access-join_button">
-        <a class="joint-button" href="/access/join" ><p>회원가입</p></a>
+        <a class="joint-button" href="/join" ><p>회원가입</p></a>
     </div>
 </div>
 </body>

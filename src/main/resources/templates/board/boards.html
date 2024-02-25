@@ -43,7 +43,7 @@
             display: flex;
         }
     </style>
-    <title>게시판</title>
+    <title>게시판 목록</title>
 </head>
 <body>
 <div class="container my-5">
@@ -51,7 +51,7 @@
         <h1 class="text-center">게시판 목록</h1>
     </div>
     <div class="d-flex justify-content-end mb-3">
-        <a th:href="@{/boards/create}" class="btn btn-primary">게시판 추가</a>
+        <a th:href="@{/boards/new}" class="btn btn-primary">게시판 추가</a>
     </div>
     <div class="container p-0">
         <div class="row row-cols-3 position-relative">
@@ -69,11 +69,6 @@
                             class="board-item pe-auto p-3 link-underline link-underline-opacity-0 d-flex"
                             th:href="@{/boards/{boardId}(boardId=${board.id})}"
                     >
-                        <img
-                                class="img-thumbnail w-50 h-50 me-3"
-                                src="hellobit.png"
-                                alt="hellobit"
-                        />
                         <div>
                             <h4
                                     class="card-title fw-bold text-dark"

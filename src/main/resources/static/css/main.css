@@ -159,7 +159,7 @@
     height: 260px;
     border-radius: 27px;
     margin: 100px auto 0 auto;
-    background-color: #A9ACF1;
+    background-color: #0d6efd;
 }
 .id_area{
     margin: 40px 0 0 80px;
@@ -220,9 +220,14 @@
     border-right: 1px solid black;
     text-align: center;
     margin: 10px auto 0 auto;
+
 }
 .joint-button{
     cursor: pointer;
+    color: black;
+    text-underline: none;
+    text-decoration: none;
+    outline: none;
 }
 .join-area{
     width: 560px;
@@ -275,13 +280,13 @@
     border: none;
 }
 .join-buttonArea {
-    width: 400px;
-    height: 75px;
+    width: 250px;
+    height: 70px;
     border-radius: 10px;
-    background-color: #947FE1;
+    background-color: #0d6efd;
     cursor: pointer;
     text-align: center;
-    margin: 20px auto 0 auto;
+    margin: 40px auto 0 auto;
     padding-top: 35px;
 }
 .join-button{

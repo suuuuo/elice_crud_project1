@@ -18,13 +18,13 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/boards") //게시판 목록
+    @GetMapping("/boards") //게시판 목록 - 확인
     public String mainView(Model model){
         model.addAttribute("boards", boardService.getAllBoards());
         return "board/boards";
     }
 
-    @GetMapping("/boards/new") //게시판 생성
+    @GetMapping("/boards/new") //게시판 생성 - 확인
     public String newBoard(){
         return "board/createBoard";
     }
