@@ -13,7 +13,7 @@ import java.util.Optional;
 public class JdbcTemplateUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    public  JdbcTemplateUserRepository(DataSource dataSource) { jdbcTemplate = new JdbcTemplate(dataSource); }
+    public JdbcTemplateUserRepository(DataSource dataSource) { jdbcTemplate = new JdbcTemplate(dataSource); }
 
     public User save(User user){
         String sql = "INSERT INTO user(login_id, password) VALUES (?,?)";

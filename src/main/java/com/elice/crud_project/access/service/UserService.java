@@ -5,6 +5,8 @@ import com.elice.crud_project.access.repository.JdbcTemplateUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
 @Service
 public class UserService {
 
@@ -16,6 +18,7 @@ public class UserService {
     public List<User> getAllUsers(){ return  userRepository.findAll(); }
 
     public User getUserByLoginIdANDPassword(String loginId, String password) {
+
         return userRepository.findByLoginIdANDPassword(loginId, password).orElse(null);
     }
 

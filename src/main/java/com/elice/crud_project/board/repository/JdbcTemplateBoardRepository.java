@@ -14,7 +14,7 @@ import java.util.Optional;
 public class JdbcTemplateBoardRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    public JdbcTemplateBoardRepository(DataSource dataSource){
+    public JdbcTemplateBoardRepository( DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

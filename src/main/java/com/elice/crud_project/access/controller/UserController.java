@@ -14,12 +14,12 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) { this.userService = userService; }
 
-    @GetMapping("/access") // 로그인 화면 - 확인
+    @GetMapping("/") // 로그인 화면 - 확인
     public String loginPage(Model model){
        return "access/access";
     }
 
-    @GetMapping("/access/{user_id}") //접속 성공?
+    @GetMapping("/{user_id}") //접속 성공?
     public String access(Model model){
         return "board/boards";
     }
