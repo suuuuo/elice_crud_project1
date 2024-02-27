@@ -47,119 +47,15 @@
     width: 60px;
     height: 30px;
     margin: 20px 30px 0 0;
-
-
-}
-.boards-board_1{
-    width: 220px;
-    height: 220px;
-    background-color: white;
-    border-radius: 50%;
-    margin: 100px 0 0 100px;
-    cursor: pointer;
-}
-.boards-board_2{
-    width: 220px;
-    height: 220px;
-    background-color: white;
-    border-radius: 50%;
-    margin: -220px 0 0 500px;
-    cursor: pointer;
-}
-.boards-board_3{
-    width: 220px;
-    height: 220px;
-    background-color: white;
-    border-radius: 50%;
-    margin: 80px 0 0 100px;
-    cursor: pointer;
-}
-.boards-board_4{
-    width: 220px;
-    height: 220px;
-    background-color: white;
-    border-radius: 50%;
-    margin: -220px 0 0 500px;
-    cursor: pointer;
 }
 
-.createBoard-name{
-    width: 550px;
-    height: 70px;
-    margin: 80px auto 0 auto;
-    border-radius: 10px;
-    border: 1px solid black;
-
-}
-.createBoard-name-input{
-    width:  530px;
-    height: 50px;
-    font-size: 20px;
-    margin: 8px 10px;
-    border: none;
-    outline: none;
-}
-
-.createBoard-intro-input{
-    width: 530px;
-    height: 160px;
-    margin: 7px 0 0 7px;
-    border: none;
-    outline: none;
-    font-size: 20px;
-}
-.createBoard-intro{
-    width: 550px;
-    height: 180px;
-    border-radius: 10px;
-    margin: 30px auto 0 auto;
-    border: 1px solid black;
-
-}
-.board-button_area {
-    margin: 50px auto 0 auto;
-    width: 550px;
-    height: 75px;
-    display: flex;
-}
-.createBoard-button_area{
-    width: 140px;
-    height: 55px;
-    background-color: #A9ACF1;
-    padding-top: 20px;
-    padding-left: 40px;
-    border-radius: 7px;
-    margin-left:70px;
-}
-.createBoard-button{
-    font-size: 24px;
-    width: 150px;
-    height: 20px;
-    color: black;
-    text-decoration-line: none;
-}
-.back-button_area{
-    width: 140px;
-    height: 55px;
-    background-color: #A9ACF1;
-    padding-top: 20px;
-    padding-left: 40px;
-    border-radius: 7px;
-    margin-left: 50px;
-}
-.back-button{
-    font-size: 24px;
-    width: 150px;
-    height: 20px;
-    color: black;
-    text-decoration-line: none;
-}
 .access-area{
     width: 560px;
     height: 260px;
     border-radius: 27px;
-    margin: 100px auto 0 auto;
+    margin: 50px auto 0 auto;
     background-color: #0d6efd;
+    padding-top: 10px;
 }
 .id_area{
     margin: 40px 0 0 80px;
@@ -183,6 +79,9 @@
     outline: none;
     border: none;
     color: black;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: white;
 }
 .pw_area{
     width: 395px;
@@ -232,13 +131,13 @@
 .join-area{
     width: 560px;
     height: 450px;
-    margin: 100px auto 0 auto;
+    margin: 50px auto 0 auto;
 }
 .joinId_area{
     width: 560px;
     height: 60px;
     border-radius: 5px;
-    margin-top: 20px;
+
     margin-bottom: 40px;
     border: 1px solid #C1BBBB;
 }
@@ -280,21 +179,23 @@
     border: none;
 }
 .join-buttonArea {
-    width: 250px;
-    height: 70px;
+    width: 200px;
+    height: 60px;
     border-radius: 10px;
     background-color: #0d6efd;
     cursor: pointer;
     text-align: center;
     margin: 40px auto 0 auto;
-    padding-top: 35px;
+    padding-top: 20px;
 }
 .join-button{
-
+    background-color: #0d6efd;
+    color: white;
     font-size: 30px;
     color: white;
     text-underline: none;
     text-decoration-line: none;
     outline: none;
     border: none;
+    cursor: pointer;
 }

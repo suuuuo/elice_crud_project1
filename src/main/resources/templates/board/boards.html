@@ -44,15 +44,35 @@
         }
     </style>
     <title>게시판 목록</title>
+
+    <style>
+        .logout{
+            float: right;
+            cursor: pointer;
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="container my-5">
+
     <div class="header mb-5">
         <h1 class="text-center">게시판 목록</h1>
+        <div>
+        <a th:href="@{/logout}" class="logout">로그아웃</a>
+        </div>
+
+        <div style="display: flex">
+        <p th:text="${user}">비회원</p>
+        <p>님, 환영합니다! </p>
+
+    </div>
     </div>
     <div class="d-flex justify-content-end mb-3">
         <a th:href="@{/boards/new}" class="btn btn-primary">게시판 추가</a>
     </div>
+
     <div class="container p-0">
         <div class="row row-cols-3 position-relative">
             <div
@@ -67,37 +87,46 @@
                 >
                     <a
                             class="board-item pe-auto p-3 link-underline link-underline-opacity-0 d-flex"
-                            th:href="@{/boards/{boardId}(boardId=${board.id})}"
+                            th:href="@{/boards/{board_id}(board_id=${board.boardId})}"
                     >
                         <div>
+
                             <h4
                                     class="card-title fw-bold text-dark"
-                                    th:text="${board.name}"
+                                    th:text="${board.boardName}"
                             >
                                 게시판 이름
                             </h4>
+                            <p th:text = "${board.user.loginId}"> 생성자 </p>
                             <span
                                     class="card-text text-secondary text-wrap"
-                                    th:text="${board.description}"
+                                    th:text="${board.boardIntro}"
                             >게시판 설명</span
                             >
                         </div>
+
+
+
+
                         <div
                                 class="position-absolute end-0 bottom-0 mb-3 me-3 btn-group bg-white bg-opacity-75"
                                 role="group"
                                 aria-label="edit-delete"
                         >
+                            <!--게시판 수정 버튼-->
                             <button
                                     class="btn btn-outline-primary lh-1"
-                                    th:onclick="'event.preventDefault(); location.href=\'/boards/' + ${board.id} + '/edit\''"
+                                    th:onclick="'event.preventDefault(); location.href=\'/boards/' + ${board.boardId} + '/edit\''"
                             >
                                 <span class="material-symbols-outlined"> edit </span>
                             </button>
+
+
                             <button
                                     class="btn btn-outline-danger lh-1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteModal"
-                                    th:onclick="handleDeleteButton(event, [[${board.id}]]);"
+                                    th:onclick="handleDeleteButton(event, [[${board.boardId}]]);"
                             >
                                 <span class="material-symbols-outlined"> delete </span>
                             </button>
@@ -160,9 +189,9 @@
 <script th:inline="javascript">
     let currentBoard;
 
-    function handleDeleteButton(e, boardId) {
+    function handleDeleteButton(e, board_id, ) {
         e.preventDefault();
-        currentBoard = boardId;
+        currentBoard = board_id;
     }
 
     function handleDeleteModalButton() {

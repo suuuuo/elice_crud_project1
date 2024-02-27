@@ -34,26 +34,57 @@
         .comment:hover .btn-group {
             display: flex;
         }
+        .createAtFontArea{
+            font-size: 10px;
+        }
+        .createAtFontArea1{
+            font-size: 10px;
+            margin-top: 0;
+        }
+         .createAtFont{
+             color: gray;
+             margin-bottom: 0;
+         }
     </style>
-    <title th:text="${post.title}"></title>
+    <title th:text="${post.postTitle}"></title>
 </head>
 <body>
 <div class="container my-5 mx-auto">
     <a
             class="link link-offset-1 link-offset-2-hover text-sm fs-6 mb-2 d-block"
             style="transition: all 0.1s ease-in-out"
-            th:href="@{/boards/{boardId}(boardId=${post.board.id})}"
+            th:href="@{/boards/{board_id}(board_id=${post.board.boardId})}"
     >&larr; 게시판으로 돌아가기</a
     >
+
+
+    <!-- 게시글 헤더 부분 -->
     <div class="container border rounded p-4 position-relative">
         <div class="header mb-3">
-            <h2 class="text-start" th:text="${post.title}">게시글 제목</h2>
-            <small class="text-secondary" th:text="${post.updatedAt}"
-            >게시글 수정일</small
-            >
+            <h2 class="text-start" th:text="${post.postTitle}">게시글 제목</h2>
+            <div style="display: flex">
+                <p>작성자 : </p>
+                <p id="Author" th:text = "${post.user.loginId}"> </p>
+            </div>
+            <div style="display: flex" class="createAtFontArea">
+                <p class="createAtFont" >생성일 : </p>
+                <small class="text-secondary" th:text="${post.createdAt}">게시글 생성일</small>
+            </div>
+            <div style="display: flex" class="createAtFontArea">
+                <p class="createAtFont" >수정일 : </p>
+                <small class="text-secondary" th:text="${post.updatedAt}">게시글 수정일</small>
+            </div>
+
         </div>
-        <p class="m-0" th:text="${post.content}">게시글 내용</p>
+
+        <!--게시글 내용-->
+        <p class="m-0" th:text="${post.postContent}">게시글 내용</p>
+
+
         <hr class="mt-4" />
+
+
+        <!--댓글 개수-->
         <h4 class="mb-3">
             댓글
             <small
@@ -63,6 +94,11 @@
             >0</small
             >
         </h4>
+
+
+
+
+        <!--댓글 목록 카드-->
         <div
                 class="container p-0 d-flex flex-column align-items-start gap-2"
                 th:unless="${#lists.isEmpty(comments)}"
@@ -73,13 +109,20 @@
                     th:each="comment : ${comments}"
             >
                 <div class="card-body position-relative">
-                    <small class="text-secondary" th:text="${post.createdAt}"
-                    >댓글 생성일</small>
-                    <p class="mb-2" th:text="${comment.content}">댓글 내용</p>
+                    <p id="commentAuthor" th:text = "${comment.user.loginId}">작성자</p>
+                    <div style="display: flex" class="createAtFontArea1">
+                        <p class="createAtFont" >생성일 : </p>
+                        <small class="text-secondary" th:text="${comment.createdAt}">댓글 생성일</small>
+                    </div>
+                    <div style="display: flex" class="createAtFontArea">
+                        <p class="createAtFont" >수정일 : </p>
+                        <small class="text-secondary" th:text="${comment.updatedAt}">댓글 생성일</small>
+                    </div>
 
-                    <small class="text-secondary" th:text="${post.createdAt}"
-                    >댓글 수정일</small
-                    >
+                    <p class="mb-2" th:text="${comment.commentContent}" style="margin-top: 10px">댓글 내용</p>
+                </div>
+
+                <!--수정, 삭제 버튼-->
 
                     <div
                             class="position-absolute end-0 top-50 translate-middle-y mb-3 me-3 btn-group bg-white bg-opacity-75"
@@ -90,7 +133,7 @@
                                 class="btn btn-outline-primary lh-1"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editCommentModal"
-                                th:onclick="handleEditCommentButton(event, [[${comment.id}]], [[${comment.content}]]);"
+                                th:onclick="handleEditCommentButton(event, [[${comment.commentId}]], [[${comment.commentContent}]]);"
                         >
                             <span class="material-symbols-outlined"> edit </span>
                         </button>
@@ -98,7 +141,7 @@
                                 class="btn btn-outline-danger lh-1"
                                 data-bs-toggle="modal"
                                 data-bs-target="#deleteCommentModal"
-                                th:onclick="handleDeleteCommentButton(event, [[${comment.id}]]);"
+                                th:onclick="handleDeleteCommentButton(event, [[${comment.commentId}]], [[${post.postId}]]);"
                         >
                             <span class="material-symbols-outlined"> delete </span>
                         </button>
@@ -106,21 +149,25 @@
                 </div>
             </div>
         </div>
+
+    <!-- 댓글이 하나도 없으면~ -->
         <span
                 th:if="${#lists.isEmpty(comments)}"
                 class="d-block w-100 text-center"
         >댓글이 없습니다.</span
         >
 
+        <!--요청-->
         <form
                 class="mt-3 row"
-                th:action="@{/comments(postId=${post.id})}"
+                th:action="@{/comment(postId=${post.postId})}"
                 method="POST"
         >
+            <!--댓글 업로드-->
             <div class="input-group">
             <textarea
                     class="form-control"
-                    name="content"
+                    name="commentContent"
                     cols="6"
                     placeholder="댓글 작성하기"
             ></textarea>
@@ -137,21 +184,25 @@
             >
                 <span class="material-symbols-outlined"> more_horiz </span>
             </button>
+
+            <!--게시글 수정-->
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                     <button
                             class="dropdown-item d-flex align-items-center gap-2"
-                            th:onclick="'location.href=\'/posts/' + ${post.id} + '/edit\''"
+                            th:onclick="'location.href=\'/post/' + ${post.postId} + '/edit\''"
                     >
                         <span class="material-symbols-outlined"> edit </span>수정
                     </button>
                 </li>
+
+
                 <li>
                     <button
                             class="dropdown-item text-danger btn btn-danger d-flex align-items-center gap-2"
                             data-bs-toggle="modal"
                             data-bs-target="#deletePostModal"
-                            th:onclick="handleDeletePostButton(event, [[${post.id}]], [[${post.board.id}]]);"
+                            th:onclick="handleDeletePostButton(event, [[${post.postId}]], [[${post.board.boardId}]]);"
                     >
                         <span class="material-symbols-outlined"> delete </span>삭제
                     </button>
@@ -161,6 +212,8 @@
     </div>
 </div>
 
+
+
 <div
         class="modal fade"
         id="deletePostModal"
@@ -168,6 +221,8 @@
         aria-labelledby="deletePostModalLabel"
         aria-hidden="true"
 >
+
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,9 +236,11 @@
                         aria-label="Close"
                 ></button>
             </div>
+
             <div class="modal-body">
                 <p class="fw-light">게시글과 댓글이 삭제됩니다.</p>
             </div>
+
             <div class="modal-footer">
                 <button
                         type="button"
@@ -192,6 +249,7 @@
                 >
                     취소
                 </button>
+
                 <button
                         type="button"
                         class="btn btn-danger"
@@ -199,24 +257,26 @@
                 >
                     삭제
                 </button>
+
             </div>
         </div>
     </div>
 </div>
+
 
 <div
         class="modal fade"
         id="editCommentModal"
         tabindex="-1"
         aria-labelledby="editCommentModalLabel"
-        aria-hidden="true"
->
+        aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="editCommentModalLabel">
                     댓글 수정하기
                 </h1>
+
                 <button
                         type="button"
                         class="btn-close"
@@ -224,15 +284,20 @@
                         aria-label="Close"
                 ></button>
             </div>
+
             <form id="commentEditForm" method="POST">
+
                 <div class="modal-body">
               <textarea
                       class="form-control"
-                      name="content"
+                      name="commentContent"
                       id="commentContentTextarea"
                       placeholder="댓글 수정하기..."
               ></textarea>
                 </div>
+
+
+
                 <div class="modal-footer">
                     <button
                             type="button"
@@ -242,11 +307,13 @@
                         취소
                     </button>
                     <button class="btn btn-primary">수정</button>
+
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 <div
         class="modal fade"
@@ -267,18 +334,20 @@
                         data-bs-dismiss="modal"
                         aria-label="Close"
                 ></button>
+
             </div>
             <div class="modal-body">
                 <p class="fw-light">해당 댓글이 삭제됩니다.</p>
             </div>
             <div class="modal-footer">
+
                 <button
                         type="button"
                         class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                >
+                        data-bs-dismiss="modal">
                     취소
                 </button>
+
                 <button
                         type="button"
                         class="btn btn-danger"
@@ -309,34 +378,37 @@
     }
 
     function handleDeletePostModalButton() {
-        fetch(`/posts/${currentPost}`, {
+        fetch(`/post/${currentPost}/delete`, {
             method: "DELETE",
         }).then(() => (window.location.href = `/boards/${currentBoard}`));
     }
 
-    function handleDeleteCommentButton(e, commentId) {
+    function handleDeleteCommentButton(e,  commentId, postId) {
         currentComment = commentId;
-        elementToDelete = e.target.closest(".card");
+        currentPost = postId;
+        elementToDelete = e.target.closest(".card");;
     }
 
     function handleDeleteCommentModalButton() {
-        fetch(`/comments/${currentComment}`, {
-            method: "DELETE",
-        }).then(() => elementToDelete.remove());
+            fetch(`/comment/${currentComment}/delete`, {
+                method: "DELETE",
+            }).then(() => (window.location.href = `/post/${currentPost}`));
 
-        const commentsCount = document.getElementById("commentsCount");
-        commentsCount.innerText = parseInt(commentsCount.innerText) - 1;
 
-        const modal = bootstrap.Modal.getInstance("#deleteCommentModal");
-        modal.hide();
+            const commentsCount = document.getElementById("commentsCount");
+            commentsCount.innerText = parseInt(commentsCount.innerText) - 1;
+
+            const modal = bootstrap.Modal.getInstance("#deleteCommentModal");
+            modal.hide();
     }
 
     function handleEditCommentButton(_, commentId, content) {
         document.getElementById("commentContentTextarea").innerText = content;
         document
             .getElementById("commentEditForm")
-            .setAttribute("action", `/comments/${commentId}/edit`);
+            .setAttribute("action", `/comment/${commentId}/edit`);
     }
 </script>
+
 </body>
 </html>

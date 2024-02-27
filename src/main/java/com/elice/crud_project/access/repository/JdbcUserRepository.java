@@ -8,10 +8,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 @Repository
 public class JdbcUserRepository {
-
     private final DataSource dataSource;
-
-
     public JdbcUserRepository(DataSource dataSource){ this.dataSource = dataSource; }
 
 

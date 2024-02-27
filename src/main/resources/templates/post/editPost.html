@@ -27,30 +27,30 @@
         <h1 class="text-center">게시글 수정</h1>
     </div>
     <form
-            th:action="@{/post/{postId}/edit(postId=${post.id})}"
+            th:action="@{/post/{post_id}/edit(post_id=${post.postId})}"
             method="post"
     >
         <div class="mb-3">
-            <label for="title">게시글 제목</label>
+            <label for="postTitle">게시글 제목</label>
             <input
                     type="text"
                     class="form-control"
-                    id="title"
-                    name="title"
+                    id="postTitle"
+                    name="postTitle"
                     maxlength="30"
                     placeholder="게시글 제목 입력 (최대 30자)"
                     required
-                    th:value="${post.title}"
+                    th:value="${post.postTitle}"
             />
         </div>
         <div class="mb-3">
-            <label for="content">내용</label>
+            <label for="postContent">내용</label>
             <textarea
                     class="form-control"
-                    id="content"
-                    name="content"
+                    id="postContent"
+                    name="postContent"
                     placeholder="내용 입력"
-                    th:text="${post.content}"
+                    th:text="${post.postContent}"
             ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">수정</button>

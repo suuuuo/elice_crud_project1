@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 public class BoardService {
     private final JdbcTemplateBoardRepository boardRepository;
+    private Board board;
 
     public BoardService(JdbcTemplateBoardRepository boardRepository){
         this.boardRepository = boardRepository;
@@ -18,7 +19,7 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public Board getBoardById(int boardId){
+    public Board getBoardByBoardId(int boardId){
         return boardRepository.findById(boardId).orElse(null);
     }
 

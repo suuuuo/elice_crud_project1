@@ -13,7 +13,7 @@ import java.util.Optional;
 public class JdbcTemplateUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    public  JdbcTemplateUserRepository(DataSource dataSource) { jdbcTemplate = new JdbcTemplate(dataSource); }
+    public JdbcTemplateUserRepository(DataSource dataSource) { jdbcTemplate = new JdbcTemplate(dataSource); }
 
     public User save(User user){
         String sql = "INSERT INTO user(login_id, password) VALUES (?,?)";
@@ -33,8 +33,18 @@ public class JdbcTemplateUserRepository {
         return jdbcTemplate.query(sql, userRowMapper());
     }
 
+    public Optional<User> findByUserId(int userId){
+        String sql = "SELECT * FROM user WHERE user_id = ?";
+        return jdbcTemplate.query(sql, userRowMapper(),userId).stream().findAny();
+    }
+
+    public Optional<User> findByLoginId(String loginId){
+        String sql = "SELECT * FROM user WHERE login_id = ?";
+        return  jdbcTemplate.query(sql, userRowMapper(), loginId).stream().findAny();
+    }
+
     public Optional<User> findByLoginIdANDPassword(String loginId,String password){
-        String sql = "SELECT user_id FROM user WHERE login_id = ? AND password = ?";
+        String sql = "SELECT * FROM user WHERE login_id = ? AND password = ?";
         return  jdbcTemplate.query(sql, userRowMapper(), loginId, password).stream().findAny();
     }
 
