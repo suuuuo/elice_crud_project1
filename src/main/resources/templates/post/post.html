@@ -34,6 +34,13 @@
         .comment:hover .btn-group {
             display: flex;
         }
+        .createAtFontArea{
+            font-size: 10px;
+        }
+         .createAtFont{
+             color: gray;
+             margin-bottom: 0;
+         }
     </style>
     <title th:text="${post.postTitle}"></title>
 </head>
@@ -56,7 +63,14 @@
                 <p>생성자 : </p>
                 <p th:text = "${post.user.loginId}"> </p>
             </div>
-                <small class="text-secondary" th:text="${post.updatedAt}"></small>
+            <div style="display: flex" class="createAtFontArea">
+                <p class="createAtFont" >생성일 : </p>
+                <small class="text-secondary" th:text="${post.createdAt}">게시글 생성일</small>
+            </div>
+            <div style="display: flex" class="createAtFontArea">
+                <p class="createAtFont" >수정일 : </p>
+                <small class="text-secondary" th:text="${post.updatedAt}">게시글 수정일</small>
+            </div>
 
         </div>
         <p class="m-0" th:text="${post.postContent}">게시글 내용</p>
@@ -80,13 +94,19 @@
                     th:each="comment : ${comments}"
             >
                 <div class="card-body position-relative">
-                    <small class="text-secondary" th:text="${comment.createdAt}"
-                    >댓글 생성일</small>
+                    <div style="display: flex" class="createAtFontArea">
+                        <p class="createAtFont" >생성일 : </p>
+                        <small class="text-secondary" th:text="${comment.createdAt}">댓글 생성일</small>
+                    </div>
+
                     <p class="mb-2" th:text="${comment.commentContent}">댓글 내용</p>
 
-                    <small class="text-secondary" th:text="${comment.updatedAt}"
-                    >댓글 수정일</small
-                    >
+                    <div style="display: flex" class="createAtFontArea">
+                        <p class="createAtFont" >수정일 : </p>
+                        <small class="text-secondary" th:text="${comment.updatedAt}">댓글 생성일</small>
+                    </div>
+                </div>
+
 
                     <div
                             class="position-absolute end-0 top-50 translate-middle-y mb-3 me-3 btn-group bg-white bg-opacity-75"
@@ -128,26 +148,17 @@
                 method="POST"
         >
             <div class="input-group">
-
-
             <textarea
                     class="form-control"
-                    name="content"
+                    name="commentContent"
                     cols="6"
                     placeholder="댓글 작성하기"
             ></textarea>
-
-
                 <button class="btn btn-primary">업로드</button>
             </div>
-
         </form>
 
-
-
         <div class="position-absolute top-0 end-0 mt-4 me-4">
-
-
             <button
                     class="btn btn-light lh-1 p-0 px-2 dropdown-toggle"
                     type="button"
@@ -156,8 +167,6 @@
             >
                 <span class="material-symbols-outlined"> more_horiz </span>
             </button>
-
-
 
 
             <ul class="dropdown-menu dropdown-menu-end">

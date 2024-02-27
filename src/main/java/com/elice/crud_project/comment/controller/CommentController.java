@@ -22,6 +22,7 @@ public class CommentController {
                                 RedirectAttributes redirectAttributes){
       Comment comment = commentMapper.commentDtoToComment(commentDto);
       commentService.createComment(postId, comment);
+        System.out.println(commentDto.getCommentContent());
       redirectAttributes.addAttribute("post_id", postId);
       return "redirect:/post/{post_id}"; // 해당 게시글 화면으로 다시 돌아감
     }

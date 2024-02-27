@@ -25,6 +25,13 @@
     </style>
     <title th:text="${board.boardName}"></title>
 </head>
+<style>
+    .createAtFont{
+        font-size: 14px;
+        color: gray;
+        margin-bottom: 0;
+    }
+</style>
 <body>
 <div class="container my-5">
     <a
@@ -67,9 +74,15 @@
                 th:href="@{/post/{post_id}(post_id=${post.postId})}"
         >
             <h4 class="fw-bold mb-1" th:text="${post.postTitle}">게시글 제목</h4>
-            <small class="text-secondary" th:text="${post.createdAt}"
-            >게시글 생성일</small
-            >
+            <div style="display: flex">
+                <p class="createAtFont" >생성일 : </p>
+                <small class="text-secondary" th:text="${post.createdAt}">게시글 생성일</small>
+            </div>
+            <div style="display: flex">
+                <p class="createAtFont" >수정일 : </p>
+                <small class="text-secondary" th:text="${post.updatedAt}">게시글 수정일</small>
+            </div>
+
 
         </a>
         <span
