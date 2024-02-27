@@ -18,8 +18,15 @@ public class UserService {
     public List<User> getAllUsers(){ return  userRepository.findAll(); }
 
     public User getUserByLoginIdANDPassword(String loginId, String password) {
-
         return userRepository.findByLoginIdANDPassword(loginId, password).orElse(null);
+    }
+
+    public User getUserByUserId(int userId){
+        return  userRepository.findByUserId(userId).orElse(null);
+    }
+
+    public User getUserByLoginId(String loginId){
+        return  userRepository.findByLoginId(loginId).orElse(null);
     }
 
     public int saveUser(User user){

@@ -1,5 +1,6 @@
 package com.elice.crud_project.board.controller;
 
+import com.elice.crud_project.access.service.UserService;
 import com.elice.crud_project.board.entity.Board;
 import com.elice.crud_project.board.service.BoardService;
 import com.elice.crud_project.post.Entity.Post;
@@ -20,19 +21,23 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
+    private final UserService userService;
+
     private final PostService postService;
 
     @Autowired
-    public BoardController(BoardService boardService, PostService postService){
+    public BoardController(BoardService boardService,
+                           PostService postService,
+                           UserService userService){
         this.boardService = boardService;
         this.postService = postService;
+        this.userService = userService;
     }
 
     @GetMapping("/boards") //게시판 목록 - 확인
     public String mainView(Model model){
         List<Board> boards = boardService.getAllBoards();
         model.addAttribute("boards", boards);
-        System.out.println(boards.get(0));
         return "board/boards";
     }
 
@@ -58,10 +63,13 @@ public class BoardController {
     }
 
     @PostMapping("/boards/new") //새 게시판 생성
-    public String createBoard(@ModelAttribute BoardForm form) {
-        System.out.println(form.getBoardIntro());
-        Board board = new Board();
+    public String createBoard(@ModelAttribute BoardForm form ) {
+        System.out.println("생성 요청!");
+        System.out.println("게시판 이름 : " + form.getBoardName());
+        System.out.println("게시판 설명 : " + form.getBoardIntro());
 
+        Board board = new Board();
+        board.setUser(userService.getUserByLoginIdANDPassword("soo", "1234"));
         board.setBoardName(form.getBoardName());
         board.setBoardIntro(form.getBoardIntro());
 
