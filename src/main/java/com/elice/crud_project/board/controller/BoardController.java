@@ -85,9 +85,17 @@ public class BoardController {
     }
 
     @GetMapping("/boards/{board_id}/edit") // 게시판 수정
-    public String editBoard(@PathVariable int board_id, Model model) {
-        model.addAttribute("board", boardService.getBoardByBoardId(board_id));
-        return "/board/editBoard";
+    public String editBoard(@PathVariable int board_id, Model model
+                            ,@CookieValue(name = "loginId", required = false) String loginId) {
+        Board board = boardService.getBoardByBoardId(board_id);
+        if(board.getUser().getLoginId().equals(loginId)) {
+            model.addAttribute("board", boardService.getBoardByBoardId(board_id));
+            return "/board/editBoard";
+        }
+        else {
+            System.out.println("게시판을 생성한 사람만 수정할 수 있습니다!");
+            return "redirect:/boards";
+        }
     }
 
     @PostMapping("/boards/{board_id}/edit") //게시판 수정 요청

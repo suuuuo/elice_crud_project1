@@ -29,8 +29,13 @@ public class DataInit {
     public void init() {
         User user = new User("soo", "1234");
         this.userRepository.save(user);
+
+        User user2 = new User("joo", "1234");
+        this.userRepository.save(user2);
+
         this.boardRepository.save(new Board(user, "중고거래 게시판", "사용자들이 중고 물품을 사고팔 수 있는 게시판입니다."));
         this.boardRepository.save(new Board(user, "반려동물 게시판", "사용자들이 반려 동물 정보를 공유할 수 있는 게시판."));
+        this.boardRepository.save(new Board(user2, "독후감 게시판", "독후감을 공유할 수 있는 게시판입니다."));
 
         Board board = (Board)this.boardRepository.findById(1).orElseThrow(() -> {
             return new RuntimeException();
