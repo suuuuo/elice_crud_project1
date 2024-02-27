@@ -6,6 +6,7 @@ import com.elice.crud_project.board.entity.Board;
 import com.elice.crud_project.board.repository.BoardRepository;
 import com.elice.crud_project.board.repository.JdbcTemplateBoardRepository;
 import com.elice.crud_project.board.service.BoardService;
+import com.elice.crud_project.comment.entity.Comment;
 import com.elice.crud_project.comment.repository.CommentRepository;
 import com.elice.crud_project.post.Entity.Post;
 import com.elice.crud_project.post.repository.PostRepository;
@@ -43,6 +44,8 @@ public class DataInit {
 
         this.postRepository.save(new Post(board, user, "테스트", "테스트 게시글입니다!"));
 
+        Post post = (Post)this.postRepository.findByPostId(1);
+        this.commentRepository.save(new Comment(post, user, "안녕하세요!"));
 
     }
 

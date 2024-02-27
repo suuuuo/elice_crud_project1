@@ -37,7 +37,7 @@ public class CommentService {
 
     public Comment updateComment(int commentId, Comment comment){ //댓글 수정
         Comment updateComment = commentRepository.findCommentByCommentId(commentId);
-        updateComment.setCommemtContent(comment.getCommemtContent());
+        updateComment.setCommentContent(comment.getCommentContent());
         return commentRepository.save(updateComment);
     }
 

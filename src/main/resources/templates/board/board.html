@@ -55,19 +55,18 @@
             </div>
         </form>
         <a
-                th:href="@{/posts/create(boardId=${board.boardId})}"
+                th:href="@{/post/create(boardId=${board.boardId})}"
                 class="btn btn-primary"
-        >게시글 추가</a
-        >
+        >게시글 추가</a>
     </div>
     <div class="list-group position-relative mb-3">
         <a
                 class="board-item list-group-item p-3 list-group-item-action"
                 th:unless="${postPage.isEmpty()}"
                 th:each="post : ${postPage}"
-                th:href="@{/posts/{postId}(postId=${post.id})}"
+                th:href="@{/post/{post_id}(post_id=${post.postId})}"
         >
-            <h4 class="fw-bold mb-1" th:text="${post.title}">게시글 제목</h4>
+            <h4 class="fw-bold mb-1" th:text="${post.postTitle}">게시글 제목</h4>
             <small class="text-secondary" th:text="${post.createdAt}"
             >게시글 생성일</small
             >
@@ -88,7 +87,7 @@
             >
                 <a
                         class="page-link"
-                        th:href="@{/boards/{boardId}(page=${i}, size=${postPage.size}, boardId=${board.id}, keyword=${keyword})}"
+                        th:href="@{/boards/{board_id}(page=${i}, size=${postPage.size}, board_id=${board.boardId}, keyword=${keyword})}"
                         th:text="${i + 1}"
                 >0</a
                 >

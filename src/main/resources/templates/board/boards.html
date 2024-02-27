@@ -64,7 +64,7 @@
         </div>
 
         <div style="display: flex">
-        <p th:text="${user}"></p>
+        <p th:text="${user}">비회원</p>
         <p>님, 환영합니다! </p>
 
     </div>
@@ -126,7 +126,7 @@
                                     class="btn btn-outline-danger lh-1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteModal"
-                                    th:onclick="handleDeleteButton(event, [[${board.board+id}]);"
+                                    th:onclick="handleDeleteButton(event, [[${board.boardId}]]);"
                             >
                                 <span class="material-symbols-outlined"> delete </span>
                             </button>
@@ -189,7 +189,7 @@
 <script th:inline="javascript">
     let currentBoard;
 
-    function handleDeleteButton(e, board_id) {
+    function handleDeleteButton(e, board_id, ) {
         e.preventDefault();
         currentBoard = board_id;
     }

@@ -36,17 +36,8 @@ public class PostController {
         return "post/post";
     }
 
-    /*
-    @GetMapping("/post/create") //게시글 생성창
-    public String createPostPage(@RequestParam int boardId, Model model){
-        model.addAttribute("boardId", boardId); // 수정?
-        return "post/createPost";
-    }*/
 
-    @GetMapping("/post/create") // 확인..
-    public String createPostPage(){
-        return "post/createPost";
-    }
+
 
     @GetMapping("/post/{post_id}/edit") // 게시글 수정창
     public String editPostPage(@PathVariable int post_id, Model model){
@@ -54,14 +45,6 @@ public class PostController {
         model.addAttribute("post", post);
         return "post/editPost";
     }
-
-    @PostMapping("/post/create") // 게시글 생성 요청
-    public String createPost(@ModelAttribute PostPostDto postPostDto, @RequestParam int boardId){
-        Post post = postMapper.postPostDTOToPost(postPostDto);
-        Post createPost = postService.createPost(post,boardId);
-        return "redirect:/boards/" + createPost.getBoard().getBoardId(); // 생성한 게시글 조회 화면으로 이동
-    }
-
     @PostMapping("/post/{post_id}/edit")
     public String editPost(@PathVariable int post_id,
                            @ModelAttribute PostPostDto postPostDto,
@@ -73,6 +56,25 @@ public class PostController {
         redirectAttributes.addFlashAttribute("message", "게시글이 수정되었습니다.");
         return "redirect:/post/{post_id}"; // 수정한 게시글 조회 화면
     }
+
+
+
+
+
+    @GetMapping("/post/create") //게시글 생성창
+    public String createPostPage(@RequestParam int boardId, Model model){
+
+        model.addAttribute("boardId", boardId); // 수정?
+        return "post/createPost";
+    }
+    @PostMapping("/post/create") // 게시글 생성 요청
+    public String createPost(@ModelAttribute PostPostDto postPostDto, @RequestParam int boardId){
+        Post post = postMapper.postPostDTOToPost(postPostDto);
+        Post createPost = postService.createPost(post,boardId);
+        return "redirect:/boards/" + createPost.getBoard().getBoardId(); // 생성한 게시글 조회 화면으로 이동
+    }
+
+
 
     @DeleteMapping("post/{post_id}")
     public String deletePost(@PathVariable int post_id, RedirectAttributes redirectAttributes){

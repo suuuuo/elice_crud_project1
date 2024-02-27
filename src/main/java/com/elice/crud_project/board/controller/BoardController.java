@@ -110,9 +110,17 @@ public class BoardController {
         return "redirect:/boards"; //게시판 목록으로 이동?
     }
 
-    @DeleteMapping("/boards/{board_id}") //게시판 삭제
-    public String deleteBoard(@PathVariable int board_id) {
-        boardService.deleteBoardById(board_id);
-        return "redirect:/boards";
+    @DeleteMapping("/boards/{board_id}/delete") //게시판 삭제
+    public String deleteBoard(@PathVariable int board_id,
+                              @CookieValue(name = "loginId", required = false) String loginId) {
+        Board board = boardService.getBoardByBoardId(board_id);
+        if(board.getUser().getLoginId().equals(loginId)) {
+            boardService.deleteBoardById(board_id);
+            return "redirect:/boards";
+        }
+        else{
+            System.out.println("게시판을 생성한 사람만 삭제할 수 있습니다!");
+            return "redirect:/boards";
+        }
     }
 }
