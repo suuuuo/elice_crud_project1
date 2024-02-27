@@ -36,7 +36,8 @@ public class BoardController {
     }
 
     @GetMapping("/boards") //게시판 목록 - 확인
-    public String mainView(Model model, @CookieValue(name = "loginId", required = false) String loginId){
+    public String mainView(Model model,
+                           @CookieValue(name = "loginId", required = false) String loginId){
         model.addAttribute("user", loginId);
         List<Board> boards = boardService.getAllBoards();
         model.addAttribute("boards", boards);
@@ -65,13 +66,17 @@ public class BoardController {
     }
 
     @PostMapping("/boards/new") //새 게시판 생성
-    public String createBoard(@ModelAttribute BoardForm form ) {
+    public String createBoard(@ModelAttribute BoardForm form,
+                              @CookieValue(name = "loginId", required = false) String loginId) {
+
         System.out.println("생성 요청!");
         System.out.println("게시판 이름 : " + form.getBoardName());
         System.out.println("게시판 설명 : " + form.getBoardIntro());
 
+        User user = userService.getUserByLoginId(loginId);
+
         Board board = new Board();
-        board.setUser(userService.getUserByLoginIdANDPassword("soo", "1234"));
+        board.setUser(user);
         board.setBoardName(form.getBoardName());
         board.setBoardIntro(form.getBoardIntro());
 
