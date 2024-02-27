@@ -30,7 +30,9 @@ public class CommentController {
     @PostMapping("/comment/{commemt_id}/edit") // 댓글 수정 요청
     public String updateComment(@PathVariable int commemt_id,
                                 @ModelAttribute CommentDto commentDto,
-                                RedirectAttributes redirectAttributes){
+                                RedirectAttributes redirectAttributes,
+                                @CookieValue(name = "loginId", required = false) String loginId) {
+
         Comment comment = commentMapper.commentDtoToComment(commentDto);
         Comment updateComment = commentService.updateComment(commemt_id, comment);
         redirectAttributes.addAttribute("postId",updateComment.getPost().getPostId());
@@ -38,7 +40,8 @@ public class CommentController {
     }
 
     @DeleteMapping("/comment/{comment_id}/delete") //댓글 삭제 요청
-    public String deleteComment(@PathVariable int comment_id){
+    public String deleteComment(@PathVariable int comment_id,
+                                @CookieValue(name = "loginId", required = false) String loginId) {
         Comment deleteComment = commentService.findCommentByCommentId(comment_id);
         int postId = deleteComment.getPost().getPostId();
         commentService.deleteComment(comment_id);

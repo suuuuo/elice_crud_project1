@@ -4,6 +4,8 @@ import com.elice.crud_project.access.entity.User;
 import com.elice.crud_project.access.service.UserService;
 import com.elice.crud_project.board.entity.Board;
 import com.elice.crud_project.board.service.BoardService;
+import com.elice.crud_project.comment.entity.Comment;
+import com.elice.crud_project.comment.service.CommentService;
 import com.elice.crud_project.post.Entity.Post;
 import com.elice.crud_project.post.Entity.PostPostDto;
 import com.elice.crud_project.post.service.PostService;
@@ -26,13 +28,17 @@ public class BoardController {
 
     private final PostService postService;
 
+    private final CommentService commentService;
+
     @Autowired
     public BoardController(BoardService boardService,
                            PostService postService,
-                           UserService userService){
+                           UserService userService,
+                           CommentService commentService){
         this.boardService = boardService;
         this.postService = postService;
         this.userService = userService;
+        this.commentService= commentService;
     }
 
     @GetMapping("/boards") //게시판 목록 - 확인
@@ -113,6 +119,18 @@ public class BoardController {
     @DeleteMapping("/boards/{board_id}/delete") //게시판 삭제
     public String deleteBoard(@PathVariable int board_id,
                               @CookieValue(name = "loginId", required = false) String loginId) {
+        List<Post> postList = postService.findPostsByBoardId(board_id);
+        for(int i = 0; i<postList.size(); i++) {
+            Post post = postList.get(i);
+
+            List<Comment> commentList = commentService.findCommentByPostId(post.getPostId());
+            for(int j = 0; j<commentList.size(); j++) {
+                Comment comment = commentList.get(j);
+                commentService.deleteComment(comment.getCommentId());
+            }
+            postService.deletePost(post.getPostId());
+        }
+
         Board board = boardService.getBoardByBoardId(board_id);
         if(board.getUser().getLoginId().equals(loginId)) {
             boardService.deleteBoardById(board_id);

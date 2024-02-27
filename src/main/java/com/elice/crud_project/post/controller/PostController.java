@@ -49,7 +49,12 @@ public class PostController {
     public String editPost(@PathVariable int post_id,
                            @ModelAttribute PostPostDto postPostDto,
                            RedirectAttributes redirectAttributes) {
+
         Post post = postMapper.postPostDTOToPost(postPostDto);
+        post.setPostId(post_id);
+        System.out.println(post.getPostTitle());
+        System.out.println(post.getPostContent());
+        System.out.println(post.getPostId());
         Post editPost = postService.updatePost(post);
 
         redirectAttributes.addAttribute("post_id", editPost.getPostId());
@@ -76,10 +81,19 @@ public class PostController {
 
 
 
-    @DeleteMapping("post/{post_id}")
+
+
+    @DeleteMapping("post/{post_id}/delete")
     public String deletePost(@PathVariable int post_id, RedirectAttributes redirectAttributes){
+
+        List<Comment> commentList = commentService.findCommentByPostId(post_id);
+            for(int i = 0; i<commentList.size(); i++) {
+                Comment comment = commentList.get(i);
+                commentService.deleteComment(comment.getCommentId());
+            }
+
         postService.deletePost(post_id);
         redirectAttributes.addFlashAttribute("message", "게시글이 삭제되었습니다!");
-        return "redirect:/board/board"; //게시판 메인화면
+        return "redirect:/boards"; //게시판 메인화면
     }
 }

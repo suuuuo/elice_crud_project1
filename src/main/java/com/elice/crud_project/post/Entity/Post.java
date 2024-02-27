@@ -2,12 +2,16 @@ package com.elice.crud_project.post.Entity;
 
 import com.elice.crud_project.access.entity.User;
 import com.elice.crud_project.board.entity.Board;
+import com.elice.crud_project.comment.entity.Comment;
 import com.elice.crud_project.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,6 +36,8 @@ public class Post extends BaseEntity {
 
     @Column(name = "post_content", length = 1000)
     private String postContent;
+
+
 
     public void setBoard(Board board) {
         this.board = board;

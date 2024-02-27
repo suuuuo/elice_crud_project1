@@ -20,11 +20,13 @@ public class Comment extends BaseEntity {
     @Column(name="comment_id")
     private int commentId;
 
-    @ManyToOne //양방향 관계
+    //양방향 관계
+    @ManyToOne
     @JoinColumn(name="post_id")
     private Post post;
 
-    @ManyToOne //단방향 관계
+    //단방향 관계
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

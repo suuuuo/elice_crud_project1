@@ -22,7 +22,7 @@ public class Board {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "board") // 게시판 : 게시글 = 1 : N
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL) // 게시판 : 게시글 = 1 : N
     private List<Post> posts = new ArrayList<>();
 
     @Column(name = "board_name", length = 20)
