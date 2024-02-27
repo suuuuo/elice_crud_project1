@@ -30,7 +30,7 @@ public class UserController {
             return "access/access";
         }
         else {
-            Cookie idCookie = new Cookie("memberId",userForm.getLoginId());
+            Cookie idCookie = new Cookie("loginId",userForm.getLoginId());
             response.addCookie(idCookie);
             System.out.println(idCookie.getValue());
             System.out.println(userForm.getLoginId());

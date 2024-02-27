@@ -1,5 +1,6 @@
 package com.elice.crud_project.board.controller;
 
+import com.elice.crud_project.access.entity.User;
 import com.elice.crud_project.access.service.UserService;
 import com.elice.crud_project.board.entity.Board;
 import com.elice.crud_project.board.service.BoardService;
@@ -35,7 +36,8 @@ public class BoardController {
     }
 
     @GetMapping("/boards") //게시판 목록 - 확인
-    public String mainView(Model model){
+    public String mainView(Model model, @CookieValue(name = "loginId", required = false) String loginId){
+        model.addAttribute("user", loginId);
         List<Board> boards = boardService.getAllBoards();
         model.addAttribute("boards", boards);
         return "board/boards";
