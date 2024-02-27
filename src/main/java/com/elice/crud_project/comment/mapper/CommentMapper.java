@@ -11,7 +11,7 @@ public class CommentMapper {
             return null;
         } else {
             Comment comment = new Comment();
-            comment.setCommemtContent(commentDto.getCommentContent());
+            comment.setCommentContent(commentDto.getCommentContent());
             return comment;
         }
     }

@@ -27,31 +27,31 @@
         <h1 class="text-center">게시판 수정</h1>
     </div>
     <form
-            th:action="@{/boards/{boardId}/edit(boardId=${board.id})}"
+            th:action="@{/boards/{board_id}/edit(board_id=${board.boardId})}"
             method="post"
     >
         <div class="mb-3">
-            <label for="name">게시판 이름</label>
+            <label for="boardName">게시판 이름</label>
             <input
                     type="text"
                     class="form-control"
-                    id="name"
-                    name="name"
+                    id="boardName"
+                    name="boardName"
                     maxlength="20"
                     placeholder="게시판 이름 입력 (최대 20자)"
                     required
-                    th:value="${board.name}"
+                    th:value="${board.boardName}"
             />
         </div>
         <div class="mb-3">
-            <label for="description">게시판 설명</label>
+            <label for="boardIntro">게시판 설명</label>
             <textarea
                     class="form-control"
-                    id="description"
-                    name="description"
+                    id="boardIntro"
+                    name="boardIntro"
                     maxlength="200"
                     placeholder="게시판 설명 입력 (최대 200자)"
-                    th:text="${board.description}"
+                    th:text="${board.boardIntro}"
             ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">게시판 수정</button>
