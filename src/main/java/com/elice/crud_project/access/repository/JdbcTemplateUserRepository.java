@@ -39,7 +39,7 @@ public class JdbcTemplateUserRepository {
     }
 
     public Optional<User> findByLoginId(String loginId){
-        String sql = "SELECET * FROM user WHERE login_id = ?";
+        String sql = "SELECT * FROM user WHERE login_id = ?";
         return  jdbcTemplate.query(sql, userRowMapper(), loginId).stream().findAny();
     }
 

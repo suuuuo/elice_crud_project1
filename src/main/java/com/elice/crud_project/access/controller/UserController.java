@@ -39,6 +39,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logoutPage(Model model, HttpServletResponse response){
+        expireCookie(response, "loginId");
+        return "redirect:/";
+    }
+
+    private void expireCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+    }
 
     @GetMapping("/join") // 회원가입 화면 - 확인
     public String joinPage(Model model){
@@ -47,14 +58,10 @@ public class UserController {
 
     @PostMapping("/join") // 회원가입
     public String createUser(@ModelAttribute UserForm form){
-        User checkuser = new User();
-
         System.out.println(form.getLoginId());
         System.out.println(form.getPassword());
 
-        checkuser = userService.getUserByLoginId(form.getLoginId());
-
-        if(checkuser == null){
+        if(userService.getUserByLoginId(form.getLoginId()) == null){
             user.setLoginId(form.getLoginId());
             user.setPassword(form.getPassword());
 
