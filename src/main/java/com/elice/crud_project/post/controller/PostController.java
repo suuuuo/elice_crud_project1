@@ -1,6 +1,8 @@
 package com.elice.crud_project.post.controller;
 
 
+import com.elice.crud_project.access.entity.User;
+import com.elice.crud_project.access.service.UserService;
 import com.elice.crud_project.board.service.BoardService;
 import com.elice.crud_project.comment.entity.Comment;
 import com.elice.crud_project.comment.service.CommentService;
@@ -25,6 +27,7 @@ public class PostController {
     private final BoardService boardService;
     private final PostMapper postMapper;
     private final CommentService commentService;
+    private final UserService userService;
 
     @GetMapping("/post/{post_id}") // 게시글 눌렀을 때 화면 : 게시글 조회
     public String postMain(@PathVariable int post_id, Model model) {
@@ -77,8 +80,12 @@ public class PostController {
 
     @PostMapping("/post/create") // 게시글 생성 요청
     public String createPost(@ModelAttribute PostPostDto postPostDto,
-                             @RequestParam int boardId) {
+                             @RequestParam int boardId,
+                             @CookieValue(name = "loginId", required = false) String loginId) {
+
+        User user = userService.getUserByLoginId(loginId);
         Post post = postMapper.postPostDTOToPost(postPostDto);
+        post.setUser(user);
         Post createPost = postService.createPost(post, boardId);
         return "redirect:/boards/" + createPost.getBoard().getBoardId(); // 생성한 게시글 조회 화면으로 이동
     }
