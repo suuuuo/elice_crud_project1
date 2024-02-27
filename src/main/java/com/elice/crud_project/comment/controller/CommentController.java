@@ -4,6 +4,7 @@ import com.elice.crud_project.comment.entity.Comment;
 import com.elice.crud_project.comment.entity.CommentDto;
 import com.elice.crud_project.comment.mapper.CommentMapper;
 import com.elice.crud_project.comment.service.CommentService;
+import com.elice.crud_project.post.Entity.Post;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,16 +28,23 @@ public class CommentController {
       return "redirect:/post/{post_id}"; // 해당 게시글 화면으로 다시 돌아감
     }
 
-    @PostMapping("/comment/{commemt_id}/edit") // 댓글 수정 요청
-    public String updateComment(@PathVariable int commemt_id,
+    @PostMapping("/comment/{comment_id}/edit") // 댓글 수정 요청
+    public String updateComment(@PathVariable int comment_id,
                                 @ModelAttribute CommentDto commentDto,
                                 RedirectAttributes redirectAttributes,
                                 @CookieValue(name = "loginId", required = false) String loginId) {
 
-        Comment comment = commentMapper.commentDtoToComment(commentDto);
-        Comment updateComment = commentService.updateComment(commemt_id, comment);
-        redirectAttributes.addAttribute("postId",updateComment.getPost().getPostId());
-        return "redirect:/post/{postId}"; // 해당 게시글 화면으로 다시 돌아감
+        Comment basecomment = commentService.findCommentByCommentId(comment_id);
+        if (basecomment.getUser().getLoginId().equals(loginId)) {
+            Comment comment = commentMapper.commentDtoToComment(commentDto);
+            Comment updateComment = commentService.updateComment(comment_id, comment);
+            redirectAttributes.addAttribute("postId", updateComment.getPost().getPostId());
+            return "redirect:/post/{postId}"; // 해당 게시글 화면으로 다시 돌아감
+        } else {
+            System.out.println("댓글을 작성한 사람만 수정할 수 있습니다!");
+            redirectAttributes.addAttribute("postId", basecomment.getPost().getPostId());
+            return "redirect:/post/{postId}";
+        }
     }
 
     @DeleteMapping("/comment/{comment_id}/delete") //댓글 삭제 요청

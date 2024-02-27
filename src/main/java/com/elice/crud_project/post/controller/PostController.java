@@ -41,7 +41,7 @@ public class PostController {
     public String editPostPage(@PathVariable int post_id, Model model,
                                @CookieValue(name = "loginId", required = false) String loginId) {
         Post post = postService.findPost(post_id);
-        if (post.getBoard().getUser().getLoginId().equals(loginId)) {
+        if (post.getUser().getLoginId().equals(loginId)) {
             model.addAttribute("post", post);
             return "post/editPost";
         } else {
@@ -89,7 +89,7 @@ public class PostController {
                              RedirectAttributes redirectAttributes,
                              @CookieValue(name = "loginId", required = false) String loginId) {
         Post post = postService.findPost(post_id);
-        if (post.getBoard().getUser().getLoginId().equals(loginId)) {
+        if (post.getUser().getLoginId().equals(loginId)) {
             List<Comment> commentList = commentService.findCommentByPostId(post_id);
             for (int i = 0; i < commentList.size(); i++) {
                 Comment comment = commentList.get(i);
