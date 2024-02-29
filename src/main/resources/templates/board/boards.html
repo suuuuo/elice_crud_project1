@@ -59,6 +59,9 @@
 
     <div class="header mb-5">
         <h1 class="text-center">게시판 목록</h1>
+        <div style="text-align: center">
+            <p style="font-size: 12px">※ 본인의 생성물만 수정/삭제가 가능합니다! ※</p>
+        </div>
         <div>
         <a th:href="@{/logout}" class="logout">로그아웃</a>
         </div>
@@ -126,7 +129,7 @@
                                     class="btn btn-outline-danger lh-1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteModal"
-                                    th:onclick="handleDeleteButton(event, [[${board.boardId}]]);"
+                                    th:onclick="handleDeleteButton(event, [[${board.boardId}]], [[${board.user.loginId}]], [[${user}]]);"
                             >
                                 <span class="material-symbols-outlined"> delete </span>
                             </button>
@@ -154,7 +157,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="deleteModalLabel">
-                    게시판을 삭제하시겠습니까?
+                    게시판을 삭제하시겠습니까? <br> 포함된 모든 게시글이 삭제됩니다.
                 </h1>
                 <button
                         type="button"
@@ -164,7 +167,7 @@
                 ></button>
             </div>
             <div class="modal-body">
-                <p class="fw-light">게시판에 포함된 모든 게시글이 삭제됩니다.</p>
+                <p class="fw-light"> 게시판을 생성한 사람만 삭제 가능합니다</p>
             </div>
             <div class="modal-footer">
                 <button
@@ -188,16 +191,25 @@
 
 <script th:inline="javascript">
     let currentBoard;
+    let boardUserName;
+    let loginIdName;
 
-    function handleDeleteButton(e, board_id, ) {
+    function handleDeleteButton(e, board_id,boardUser, loginId ) {
         e.preventDefault();
         currentBoard = board_id;
+        boardUserName = boardUser;
+        loginIdName = loginId;
     }
 
     function handleDeleteModalButton() {
+        if(boardUserName === loginIdName){
         fetch(`/boards/${currentBoard}/delete`, {
             method: "DELETE",
         }).then(() => (window.location.href = "/boards"));
+    }else{
+            window.location.href = "/boards";
+            alert("다른 사람의 게시판입니다!");
+        }
     }
 </script>
 
@@ -207,5 +219,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"
 ></script>
+
+
 </body>
 </html>

@@ -17,7 +17,7 @@
 .boards-title{
     width: 810px;
     height: 130px;
-    margin: 0 auto 0 auto;
+    margin: 50px auto 0 auto;
     text-align: center;
     padding-top: 50px;
     font-size: 36px;
@@ -51,7 +51,7 @@
 
 .access-area{
     width: 560px;
-    height: 260px;
+    height: 280px;
     border-radius: 27px;
     margin: 50px auto 0 auto;
     background-color: #0d6efd;
@@ -76,6 +76,7 @@
 }
 .Login_link{
     text-decoration-line: none;
+    margin-right: 50px;
     outline: none;
     border: none;
     color: black;
@@ -107,9 +108,8 @@
     height: 40px;
     font-size: 20px;
     border-radius: 3px;
-    padding-left: 100px;
-    padding-top: 10px;
-    cursor: pointer;
+    padding-left: 57px;
+    padding-top: 7px;
     background-color: white;
 }
 .access-join_button{
@@ -186,16 +186,27 @@
     cursor: pointer;
     text-align: center;
     margin: 40px auto 0 auto;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 .join-button{
     background-color: #0d6efd;
+    height: 25px;
     color: white;
-    font-size: 30px;
+    font-size: 24px;
     color: white;
     text-underline: none;
     text-decoration-line: none;
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.ment-box{
+
+    margin: 20px auto 0 auto;
+    text-align: center;
+}
+.ment{
+    font-size: 12px;
+    color: white;
 }
