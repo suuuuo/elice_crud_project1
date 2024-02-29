@@ -133,7 +133,8 @@
                                 class="btn btn-outline-primary lh-1"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editCommentModal"
-                                th:onclick="handleEditCommentButton(event, [[${comment.commentId}]], [[${comment.commentContent}]]);"
+                                th:onclick="handleEditCommentButton(event, [[${comment.commentId}]], [[${comment.commentContent}]],
+                            [[${loginId}]], [[${comment.user.loginId}]]);"
                         >
                             <span class="material-symbols-outlined"> edit </span>
                         </button>
@@ -408,11 +409,19 @@
             modal.hide();
     }
 
-    function handleEditCommentButton(_, commentId, content) {
-        document.getElementById("commentContentTextarea").innerText = content;
-        document
-            .getElementById("commentEditForm")
-            .setAttribute("action", `/comment/${commentId}/edit`);
+    function handleEditCommentButton(_, commentId, content, commentLoginId, loginId) {
+        console.log(commentLoginId);
+        console.log(loginId);
+        if (commentLoginId === loginId) {
+            console.log("같음!");
+            document.getElementById("commentContentTextarea").innerText = content;
+            document
+                .getElementById("commentEditForm")
+                .setAttribute("action", `/comment/${commentId}/edit`);
+        } else {
+            console.log("다름!");
+            document.getElementById("commentContentTextarea").innerText = "다른 사람의 댓글입니다";
+        }
     }
 </script>
 

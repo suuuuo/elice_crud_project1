@@ -30,9 +30,11 @@ public class PostController {
     private final UserService userService;
 
     @GetMapping("/post/{post_id}") // 게시글 눌렀을 때 화면 : 게시글 조회
-    public String postMain(@PathVariable int post_id, Model model) {
+    public String postMain(@PathVariable int post_id, Model model,
+                           @CookieValue(name = "loginId", required = false) String loginId){
         Post post = postService.findPost(post_id);
         model.addAttribute("post", post);
+        model.addAttribute("loginId", loginId);
         //코멘트 추가
         List<Comment> commentList = commentService.findCommentByPostId(post_id);
         model.addAttribute("comments", commentList);
