@@ -189,16 +189,11 @@
             <!--게시글 수정-->
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <script type="text/javascript">
-                        function click(){
-                            window.location = 'http://localhost:8080/boards';
-                            // "'location.href=\'/post/' + ${post.postId} + '/edit\''"
-                            //th:onclick=>
-                        }
-                    </script>
+
                     <button
                             class="dropdown-item d-flex align-items-center gap-2"
-                            onclick="click()">
+                            th:onclick="'location.href=\'/post/' + ${post.postId} + '/edit\''"
+                        >
                         <span class="material-symbols-outlined"> edit </span>수정
                     </button>
                 </li>
@@ -209,7 +204,8 @@
                             class="dropdown-item text-danger btn btn-danger d-flex align-items-center gap-2"
                             data-bs-toggle="modal"
                             data-bs-target="#deletePostModal"
-                            th:onclick="handleDeletePostButton(event, [[${post.postId}]], [[${post.board.boardId}]]);"
+                            th:onclick="handleDeletePostButton(event, [[${post.postId}]], [[${post.board.boardId}]],
+                            [[${post.user.loginId}]], [[${loginId}]]);"
                     >
                         <span class="material-symbols-outlined"> delete </span>삭제
                     </button>
@@ -378,16 +374,30 @@
     let currentBoard;
     let currentComment;
     let elementToDelete;
+    let currentPostUser;
+    let currentUser;
 
-    function handleDeletePostButton(_, postId, boardId) {
+    function handleDeletePostButton(_, postId, boardId, postUser, loginId) {
         currentPost = postId;
         currentBoard = boardId;
+        currentPostUser = postUser;
+        currentUser = loginId;
+
+
     }
 
     function handleDeletePostModalButton() {
-        fetch(`/post/${currentPost}/delete`, {
-            method: "DELETE",
-        }).then(() => (window.location.href = `/boards/${currentBoard}`));
+        console.log(currentPostUser);
+        console.log(currentUser);
+        if(currentPostUser === currentUser){
+            fetch(`/post/${currentPost}/delete`, {
+                method: "DELETE",
+            }).then(() => (window.location.href = `/boards/${currentBoard}`));}
+        else{
+            window.location.href = `/post/${currentPost}`;
+            alert("게시글 생성자가 아닙니다!");
+        }
+
     }
 
     function handleDeleteCommentButton(e,  commentId, postId) {
@@ -421,6 +431,7 @@
         } else {
             console.log("다름!");
             document.getElementById("commentContentTextarea").innerText = "다른 사람의 댓글입니다";
+
         }
     }
 </script>
