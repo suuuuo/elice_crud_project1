@@ -46,8 +46,10 @@ public class PostController {
         Post post = postService.findPost(post_id);
         if (post.getUser().getLoginId().equals(loginId)) {
             model.addAttribute("post", post);
+
             return "post/editPost";
         } else {
+
             System.out.println("게시글을 작성한 사람만 수정할 수 있습니다!");
             return "redirect:/post/{post_id}";
         }

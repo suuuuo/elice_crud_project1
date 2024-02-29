@@ -188,10 +188,16 @@
             <!--게시글 수정-->
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
+                    <script type="text/javascript">
+                        function click(){
+                            window.location = 'http://localhost:8080/boards';
+                            // "'location.href=\'/post/' + ${post.postId} + '/edit\''"
+                            //th:onclick=>
+                        }
+                    </script>
                     <button
                             class="dropdown-item d-flex align-items-center gap-2"
-                            th:onclick="'location.href=\'/post/' + ${post.postId} + '/edit\''"
-                    >
+                            onclick="click()">
                         <span class="material-symbols-outlined"> edit </span>수정
                     </button>
                 </li>
