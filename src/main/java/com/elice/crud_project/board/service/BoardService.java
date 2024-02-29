@@ -31,6 +31,11 @@ public class BoardService {
         boardRepository.update(board);
     }
 
+    public Board updateBoard2(Board board){
+        boardRepository.update(board);
+        return board;
+    }
+
     public void deleteBoardById(int boardId){
         boardRepository.deleteById(boardId);
     }

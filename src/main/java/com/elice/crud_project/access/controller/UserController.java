@@ -17,25 +17,29 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) { this.userService = userService; }
 
-    User user = new User();
+
     @GetMapping("/") // 로그인 화면 - 확인
     public String loginPage(Model model){
        return "access/access";
     }
     @PostMapping("/") //접속 성공?
-    public String access(Model model, @ModelAttribute UserForm userForm , HttpServletResponse response){
-        user = userService.getUserByLoginIdANDPassword(userForm.getLoginId(), userForm.getPassword());
-        if( user == null) {
-            System.out.println("회원이 아닙니다!");
-            return "access/access";
-        }
+    public String access(Model model,@ModelAttribute UserForm userForm , HttpServletResponse response){
+       model.addAttribute("user", "대기중");
+        User user = userService.getUserByLoginIdANDPassword(userForm.getLoginId(), userForm.getPassword());
+            if(user == null){
+                System.out.println("회원이 아닙니다!");
+                model.addAttribute("notUser", "회원이 아닙니다! 아래 버튼을 눌러 가입을 진행해주세요!");
+                return "access/access";
+            }
+
         else {
             Cookie idCookie = new Cookie("loginId",userForm.getLoginId());
             response.addCookie(idCookie);
             System.out.println(idCookie.getValue());
             System.out.println(userForm.getLoginId());
             System.out.println(userForm.getPassword());
-        return "redirect:/boards";
+           return "redirect:/boards";
+
         }
     }
 
@@ -58,6 +62,7 @@ public class UserController {
 
     @PostMapping("/join") // 회원가입
     public String createUser(@ModelAttribute UserForm form){
+        User user = new User();
         System.out.println(form.getLoginId());
         System.out.println(form.getPassword());
 
