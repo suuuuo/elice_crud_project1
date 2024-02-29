@@ -134,7 +134,7 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#editCommentModal"
                                 th:onclick="handleEditCommentButton(event, [[${comment.commentId}]], [[${comment.commentContent}]],
-                            [[${loginId}]], [[${comment.user.loginId}]]);"
+                            [[${loginId}]], [[${comment.user.loginId}]], [[${post.postId}]]);"
                         >
                             <span class="material-symbols-outlined"> edit </span>
                         </button>
@@ -142,7 +142,8 @@
                                 class="btn btn-outline-danger lh-1"
                                 data-bs-toggle="modal"
                                 data-bs-target="#deleteCommentModal"
-                                th:onclick="handleDeleteCommentButton(event, [[${comment.commentId}]], [[${post.postId}]]);"
+                                th:onclick="handleDeleteCommentButton(event, [[${comment.commentId}]], [[${post.postId}]],
+                                [[${comment.user.loginId}]], [[${loginId}]]);"
                         >
                             <span class="material-symbols-outlined"> delete </span>
                         </button>
@@ -309,7 +310,7 @@
                     >
                         취소
                     </button>
-                    <button class="btn btn-primary">수정</button>
+                    <button class="btn btn-primary" id="editButton">수정</button>
 
                 </div>
             </form>
@@ -352,6 +353,7 @@
                 </button>
 
                 <button
+                        id="deleteBtn"
                         type="button"
                         class="btn btn-danger"
                         onclick="handleDeleteCommentModalButton()"
@@ -376,6 +378,9 @@
     let elementToDelete;
     let currentPostUser;
     let currentUser;
+    let currentPostId;
+    let deleteCommentId
+    let commentUserId;
 
     function handleDeletePostButton(_, postId, boardId, postUser, loginId) {
         currentPost = postId;
@@ -400,26 +405,55 @@
 
     }
 
-    function handleDeleteCommentButton(e,  commentId, postId) {
+    function handleDeleteCommentButton(e,  commentId, postId, commentUser, loginId) {
         currentComment = commentId;
         currentPost = postId;
-        elementToDelete = e.target.closest(".card");;
+        deleteCommentId = loginId;
+        commentUserId = commentUser;
+        elementToDelete = e.target.closest(".card");
+
+        let btn = document.getElementById("deleteBtn");
+        console.log(deleteCommentId);
+        console.log(commentUserId);
+        if(commentUserId === deleteCommentId){
+
+            console.log("같음!");
+            btn.style.display='block';
+        }else{
+            console.log("다름!");
+            btn.style.display='none';
+        }
     }
 
     function handleDeleteCommentModalButton() {
-            fetch(`/comment/${currentComment}/delete`, {
+        if(currentComment === deleteCommentId){
+            fetch(`/comments/${currentComment}`, {
                 method: "DELETE",
-            }).then(() => (window.location.href = `/post/${currentPost}`));
-
+            }).then(() => elementToDelete.remove());
 
             const commentsCount = document.getElementById("commentsCount");
             commentsCount.innerText = parseInt(commentsCount.innerText) - 1;
 
             const modal = bootstrap.Modal.getInstance("#deleteCommentModal");
             modal.hide();
+
+        }else{
+            fetch(`/comment/${currentComment}/delete`, {
+            method: "DELETE",
+        }).then(() => (window.location.href = `/post/${currentPost}`));
+
+            const commentsCount = document.getElementById("commentsCount");
+            commentsCount.innerText = parseInt(commentsCount.innerText) - 1;
+
+            const modal = bootstrap.Modal.getInstance("#deleteCommentModal");
+            modal.hide();
+        }
+
+
     }
 
     function handleEditCommentButton(_, commentId, content, commentLoginId, loginId) {
+        let btn = document.getElementById("editButton");
         console.log(commentLoginId);
         console.log(loginId);
         if (commentLoginId === loginId) {
@@ -428,12 +462,14 @@
             document
                 .getElementById("commentEditForm")
                 .setAttribute("action", `/comment/${commentId}/edit`);
+            btn.style.display='block';
         } else {
             console.log("다름!");
             document.getElementById("commentContentTextarea").innerText = "다른 사람의 댓글입니다";
 
-        }
+            btn.style.display='none';
     }
+        }
 </script>
 
 </body>
