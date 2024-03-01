@@ -65,8 +65,6 @@ public class BoardController {
         return "board/board";
     }
 
-
-
     @GetMapping("/boards/new") //게시판 생성 -
     public String newBoard(){
         return "board/createBoard";
@@ -90,7 +88,6 @@ public class BoardController {
         int boardId = boardService.saveBoard(board);
         return "redirect:/boards"; //게시판 목록으로 이동
     }
-
 
 
     @GetMapping("/boards/{board_id}/edit") // 게시판 수정
